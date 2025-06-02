@@ -13,24 +13,32 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const pathname = usePathname();
 
   const navigation = [
-    { name: 'Home', href: '/', section: 'home' },
-    { name: 'About Us', href: '/about', section: 'about' },
-    { name: 'Vision', href: '/vision', section: 'vision' },
-    { name: 'Services', href: '/services', section: 'services' },
-    { name: 'Contact', href: '/contact', section: 'contact' },
+    { name: 'Home', href: '/#home', section: 'home' },
+    { name: 'About Us', href: '/#about', section: 'about' },
+    { name: 'Vision', href: '/#vision', section: 'vision' },
+    { name: 'Services', href: '/#services', section: 'services' },
+    { name: 'Contact', href: '/#contact', section: 'contact' },
   ];
 
-  const isActive = (href: string) => {
-    return pathname === href;
+  const isActive = (href: string, section: string) => {
+    return activeSection === section;
   };
 
-  const scrollToSection = (section: string) => {
-    const element = document.getElementById(section);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleNavClick = (e: React.MouseEvent, href: string, section: string) => {
+    if (href.startsWith('/#')) {
+      e.preventDefault();
+      const element = document.getElementById(section);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setActiveSection(section);
+        setIsMenuOpen(false);
+        // Update URL without triggering navigation
+        window.history.pushState(null, '', href);
+      }
     }
     setIsMenuOpen(false);
   };
@@ -40,53 +48,70 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     setMounted(true);
   }, []);
 
-  // Auto-scroll when page loads based on pathname
+  // Intersection Observer to track active section
+  useEffect(() => {
+    if (!mounted) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe all sections
+    const sections = ['home', 'about', 'vision', 'services', 'contact'];
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [mounted]);
+
+  // Handle initial load with hash
   useEffect(() => {
     if (!mounted) return;
     
-    const scrollToSectionOnLoad = () => {
-      const sectionMap: { [key: string]: string } = {
-        '/': 'home',
-        '/about': 'about',
-        '/vision': 'vision',
-        '/services': 'services',
-        '/contact': 'contact',
-      };
-
-      const section = sectionMap[pathname];
-      if (section && section !== 'home') {
-        setTimeout(() => {
-          const element = document.getElementById(section);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 300);
-      }
-    };
-
-    scrollToSectionOnLoad();
-  }, [pathname, mounted]);
+    const hash = window.location.hash;
+    if (hash) {
+      const section = hash.substring(1);
+      setActiveSection(section);
+      setTimeout(() => {
+        const element = document.getElementById(section);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 300);
+    }
+  }, [mounted]);
 
   // Don't render until mounted to prevent hydration mismatch
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-gray-900 text-white">
-        <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 z-50">
+      <div className="min-h-screen bg-gray-950 text-white">
+        <nav className="fixed top-0 w-full bg-gray-950/95 backdrop-blur-sm border-b border-gray-800 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
-              <Link href="/" className="flex items-center space-x-2">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center relative">
-                    <span className="text-white font-bold text-lg">i</span>
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full"></div>
-                  </div>
-                </div>
-                <div className="hidden sm:block">
-                  <span className="text-xl font-bold">
-                    INNO<span className="text-orange-500">TECH</span>
-                  </span>
-                  <div className="text-sm text-gray-400">Service</div>
-                </div>
+              <Link href="/#home" className="flex items-center">
+                <img 
+                  src="/images/Logo-Horizontal-Negative.png" 
+                  alt="Innotech Service Logo" 
+                  className="h-8 sm:h-10 w-auto"
+                />
               </Link>
             </div>
           </div>
@@ -97,45 +122,41 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-gray-950 text-white text-render">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 z-50">
+      <nav className="fixed top-0 w-full bg-gray-950/95 backdrop-blur-sm border-b border-gray-800 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2 group">
-              <div className="relative">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center relative">
-                    <span className="text-white font-bold text-lg">i</span>
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full"></div>
-                  </div>
-                </div>
-              </div>
-              <div className="hidden sm:block">
-                <span className="text-xl font-bold">
-                  INNO<span className="text-orange-500">TECH</span>
-                </span>
-                <div className="text-sm text-gray-400">Service</div>
-              </div>
+            <Link 
+              href="/#home" 
+              onClick={(e) => handleNavClick(e, '/#home', 'home')}
+              className="flex items-center group"
+            >
+              <img 
+                src="/images/Logo-Horizontal-Negative.png" 
+                alt="Innotech Service Logo" 
+                className="h-8 sm:h-10 w-auto transform group-hover:scale-105 transition-transform duration-300"
+              />
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden md:flex items-center space-x-8">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href, item.section)}
                   className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 group ${
-                    isActive(item.href)
-                      ? 'text-orange-500'
+                    isActive(item.href, item.section)
+                      ? 'text-[#FF991C]'
                       : 'text-gray-300 hover:text-white'
                   }`}
                 >
                   {item.name}
                   <span
-                    className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform origin-left transition-transform duration-300 ${
-                      isActive(item.href) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                    className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#FF991C] transform origin-left transition-transform duration-300 ${
+                      isActive(item.href, item.section) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                     }`}
                   />
                 </Link>
@@ -158,17 +179,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-gray-800/95 backdrop-blur-sm">
+          <div className="px-2 pt-2 pb-3 space-y-1 bg-gray-900/95 backdrop-blur-sm border-t border-gray-800">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
+                onClick={(e) => handleNavClick(e, item.href, item.section)}
                 className={`flex items-center justify-between px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-                  isActive(item.href)
-                    ? 'text-orange-500 bg-gray-700'
-                    : 'text-gray-300 hover:text-white hover:bg-gray-700'
+                  isActive(item.href, item.section)
+                    ? 'text-[#FF991C] bg-gray-800'
+                    : 'text-gray-300 hover:text-white hover:bg-gray-800'
                 }`}
-                onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
                 <ChevronRight size={18} />
@@ -184,23 +205,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-800 border-t border-gray-700">
+      <footer className="bg-gray-900 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center relative">
-                    <span className="text-white font-bold text-lg">i</span>
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full"></div>
-                  </div>
-                </div>
-                <div>
-                  <span className="text-xl font-bold">
-                    INNO<span className="text-orange-500">TECH</span>
-                  </span>
-                  <div className="text-sm text-gray-400">Service</div>
-                </div>
+              <div className="flex items-center mb-4">
+                <img 
+                  src="/images/Logo-Horizontal-Negative.png" 
+                  alt="Innotech Service Logo" 
+                  className="h-8 w-auto"
+                />
               </div>
               <p className="text-gray-400 mb-4 max-w-md">
                 Delivering innovative technology solutions to transform your business and drive growth in the digital age.
@@ -214,7 +228,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-gray-400 hover:text-orange-500 transition-colors duration-200"
+                      onClick={(e) => handleNavClick(e, item.href, item.section)}
+                      className="text-gray-400 hover:text-[#FF991C] transition-colors duration-200"
                     >
                       {item.name}
                     </Link>
@@ -233,7 +248,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </div>
           </div>
           
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
             <p>&copy; 2025 Innotech Service. All rights reserved.</p>
           </div>
         </div>

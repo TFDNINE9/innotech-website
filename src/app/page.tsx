@@ -262,18 +262,18 @@ const HomePage: React.FC = () => {
       {/* Home Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#FF991C] rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
           <div className="absolute top-40 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-75"></div>
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-150"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-orange-500 bg-clip-text text-transparent">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-[#FF991C] bg-clip-text text-transparent">
               Transform Your Business
             </h1>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-semibold mb-8 text-gray-200">
-              with <span className="text-orange-500">INNOTECH</span> Solutions
+              with INNO<span className="text-[#FF991C]">TECH</span> Solutions
             </h2>
             <p className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
               We deliver innovative technology services that empower businesses to thrive in the digital age. 
@@ -282,14 +282,22 @@ const HomePage: React.FC = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
-                href="/services"
-                className="group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 flex items-center space-x-2"
+                href="#services"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="group bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/25 flex items-center space-x-2"
               >
                 <span>Get Started</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </a>
               <a
-                href="/about"
+                href="#about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="group border-2 border-gray-600 hover:border-white text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:bg-white hover:text-gray-900"
               >
                 Learn More
@@ -304,7 +312,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-gray-800/50">
+      <section className="py-20 bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -314,7 +322,7 @@ const HomePage: React.FC = () => {
                   currentStat === index ? 'scale-110' : 'scale-100'
                 }`}
               >
-                <div className="text-4xl lg:text-5xl font-bold text-orange-500 mb-2">
+                <div className="text-4xl lg:text-5xl font-bold text-[#FF991C] mb-2">
                   {stat.number}{stat.suffix}
                 </div>
                 <div className="text-gray-400 text-sm lg:text-base">{stat.label}</div>
@@ -325,11 +333,11 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20">
+      <section className="section-padding">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-5xl font-bold mb-6">
-              Why Choose <span className="text-orange-500">INNOTECH</span>
+              Why Choose INNO<span className="text-[#FF991C]">TECH</span>
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               We combine cutting-edge technology with deep industry expertise to deliver solutions that drive real results.
@@ -340,9 +348,9 @@ const HomePage: React.FC = () => {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="group p-6 bg-gray-800/50 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/10 border border-gray-700 hover:border-orange-500/50"
+                className="group p-6 dark-surface rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50"
               >
-                <div className="text-orange-500 mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-[#FF991C] mb-4 group-hover:scale-110 transition-transform duration-300">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-white">{feature.title}</h3>
@@ -356,10 +364,10 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 lg:py-32 bg-gray-800/30">
+      <section id="about" className="section-padding bg-gray-900/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-orange-500 bg-clip-text text-transparent">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-[#FF991C] bg-clip-text text-transparent">
               About INNOTECH Service
             </h1>
             <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
@@ -392,22 +400,22 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-gradient-to-br from-orange-500/20 to-purple-500/20 p-8 rounded-2xl backdrop-blur-sm border border-gray-700">
+              <div className="bg-gradient-to-br from-[#FF991C]/20 to-purple-500/20 p-8 rounded-2xl backdrop-blur-sm border border-gray-700">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-500 mb-2">2015</div>
+                    <div className="text-3xl font-bold text-[#FF991C] mb-2">2015</div>
                     <div className="text-sm text-gray-400">Company Founded</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-500 mb-2">500+</div>
+                    <div className="text-3xl font-bold text-[#FF991C] mb-2">500+</div>
                     <div className="text-sm text-gray-400">Clients Served</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-500 mb-2">50+</div>
+                    <div className="text-3xl font-bold text-[#FF991C] mb-2">50+</div>
                     <div className="text-sm text-gray-400">Team Members</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-500 mb-2">15+</div>
+                    <div className="text-3xl font-bold text-[#FF991C] mb-2">15+</div>
                     <div className="text-sm text-gray-400">Countries Reached</div>
                   </div>
                 </div>
@@ -428,9 +436,9 @@ const HomePage: React.FC = () => {
             {values.map((value, index) => (
               <div
                 key={index}
-                className="group p-8 bg-gray-800/50 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/10 border border-gray-700 hover:border-orange-500/50"
+                className="group p-8 dark-surface rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50"
               >
-                <div className="text-orange-500 mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-[#FF991C] mb-4 group-hover:scale-110 transition-transform duration-300">
                   {value.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-4 text-white">{value.title}</h3>
@@ -454,15 +462,15 @@ const HomePage: React.FC = () => {
             {team.map((member, index) => (
               <div
                 key={index}
-                className="group text-center bg-gray-800/50 p-6 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 border border-gray-700 hover:border-orange-500/50"
+                className="group text-center dark-surface p-6 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:border-[#FF991C]/50"
               >
-                <div className="w-24 h-24 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <div className="w-24 h-24 bg-gradient-to-br from-[#FF991C] to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <span className="text-2xl font-bold text-white">
                     {member.name.split(' ').map(n => n[0]).join('')}
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-white">{member.name}</h3>
-                <div className="text-orange-500 font-medium mb-2">{member.role}</div>
+                <div className="text-[#FF991C] font-medium mb-2">{member.role}</div>
                 <div className="text-sm text-gray-400 mb-3">{member.experience}</div>
                 <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
                   {member.description}
@@ -474,12 +482,12 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Vision Section */}
-      <section id="vision" className="py-20 lg:py-32">
+      <section id="vision" className="section-padding">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center mb-8">
-              <Eye className="w-16 h-16 text-orange-500 mr-4" />
-              <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-white to-orange-500 bg-clip-text text-transparent">
+              <Eye className="w-16 h-16 text-[#FF991C] mr-4" />
+              <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-white to-[#FF991C] bg-clip-text text-transparent">
                 Our Vision
               </h1>
             </div>
@@ -510,10 +518,10 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 lg:py-32 bg-gray-800/30">
+      <section id="services" className="section-padding bg-gray-900/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-orange-500 bg-clip-text text-transparent">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-[#FF991C] bg-clip-text text-transparent">
               Our Services
             </h1>
             <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-12">
@@ -542,20 +550,20 @@ const HomePage: React.FC = () => {
                 key={index}
                 className={`group relative p-8 rounded-2xl transition-all duration-500 transform hover:scale-105 cursor-pointer ${
                   activeService === index
-                    ? 'bg-gradient-to-br from-orange-500/20 to-orange-600/20 border-2 border-orange-500/50 shadow-2xl shadow-orange-500/20'
-                    : 'bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-orange-500/30'
+                    ? 'bg-gradient-to-br from-[#FF991C]/20 to-orange-600/20 border-2 border-[#FF991C]/50 shadow-2xl shadow-[#FF991C]/20'
+                    : 'dark-surface hover:bg-gray-800 hover:border-[#FF991C]/30'
                 }`}
                 onClick={() => setActiveService(index)}
               >
                 {service.popular && (
-                  <div className="absolute -top-3 -right-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center">
+                  <div className="absolute -top-3 -right-3 bg-gradient-to-r from-[#FF991C] to-orange-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center">
                     <Star className="w-3 h-3 mr-1" />
                     Popular
                   </div>
                 )}
                 
                 <div className={`mb-6 transition-all duration-300 ${
-                  activeService === index ? 'text-orange-400 scale-110' : 'text-orange-500 group-hover:scale-110'
+                  activeService === index ? 'text-orange-400 scale-110' : 'text-[#FF991C] group-hover:scale-110'
                 }`}>
                   {service.icon}
                 </div>
@@ -575,8 +583,8 @@ const HomePage: React.FC = () => {
                 </div>
                 
                 <div className="flex items-center justify-between">
-                  <div className="text-orange-500 font-semibold">{service.price}</div>
-                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-orange-500 group-hover:translate-x-1 transition-all duration-300" />
+                  <div className="text-[#FF991C] font-semibold">{service.price}</div>
+                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-[#FF991C] group-hover:translate-x-1 transition-all duration-300" />
                 </div>
               </div>
             ))}
@@ -585,7 +593,7 @@ const HomePage: React.FC = () => {
           {/* Service Details */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="text-orange-500 mb-4">
+              <div className="text-[#FF991C] mb-4">
                 {services[activeService].icon}
               </div>
               <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-white">
@@ -595,15 +603,19 @@ const HomePage: React.FC = () => {
                 {services[activeService].description}
               </p>
               <a
-                href="/contact"
-                className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
               >
                 <span>Get Started</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
             
-            <div className="bg-gray-800/50 p-8 rounded-2xl border border-gray-700">
+            <div className="dark-surface p-8 rounded-2xl">
               <h3 className="text-xl font-bold mb-6 text-white">What's Included:</h3>
               <div className="space-y-3">
                 {services[activeService].features.map((feature, index) => (
@@ -616,7 +628,7 @@ const HomePage: React.FC = () => {
               <div className="mt-8 pt-6 border-t border-gray-700">
                 <div className="flex items-center justify-between">
                   <span className="text-gray-400">Starting Price:</span>
-                  <span className="text-2xl font-bold text-orange-500">
+                  <span className="text-2xl font-bold text-[#FF991C]">
                     {services[activeService].price}
                   </span>
                 </div>
@@ -627,10 +639,10 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 lg:py-32">
+      <section id="contact" className="section-padding">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-orange-500 bg-clip-text text-transparent">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-[#FF991C] bg-clip-text text-transparent">
               Get In Touch
             </h1>
             <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-12">
@@ -666,7 +678,7 @@ const HomePage: React.FC = () => {
                         required
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
+                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
                         placeholder="Your full name"
                       />
                     </div>
@@ -681,7 +693,7 @@ const HomePage: React.FC = () => {
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
+                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
                         placeholder="your.email@company.com"
                       />
                     </div>
@@ -698,7 +710,7 @@ const HomePage: React.FC = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
+                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
                         placeholder="Your company name"
                       />
                     </div>
@@ -711,7 +723,7 @@ const HomePage: React.FC = () => {
                         name="service"
                         value={formData.service}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white transition-all duration-200"
+                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white transition-all duration-200"
                       >
                         <option value="">Select a service</option>
                         {services.map((service, index) => (
@@ -734,14 +746,14 @@ const HomePage: React.FC = () => {
                       rows={6}
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200 resize-none"
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white placeholder-gray-400 transition-all duration-200 resize-none"
                       placeholder="Tell us about your project requirements, timeline, and any specific questions you have..."
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="group w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 flex items-center justify-center space-x-2"
+                    className="group w-full bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/25 flex items-center justify-center space-x-2"
                   >
                     <span>Send Message</span>
                     <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -755,9 +767,9 @@ const HomePage: React.FC = () => {
               <h2 className="text-3xl font-bold mb-8 text-white">Contact Information</h2>
               
               <div className="space-y-6">
-                <div className="bg-gray-800/50 p-6 rounded-2xl border border-gray-700 hover:border-orange-500/50 transition-all duration-300">
+                <div className="dark-surface p-6 rounded-2xl hover:border-[#FF991C]/50 transition-all duration-300">
                   <div className="flex items-center mb-4">
-                    <Mail className="w-8 h-8 text-orange-500 mr-4" />
+                    <Mail className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
                       <h3 className="text-xl font-semibold text-white">Email Us</h3>
                       <p className="text-gray-400">info@innotechservice.com</p>
@@ -768,9 +780,9 @@ const HomePage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="bg-gray-800/50 p-6 rounded-2xl border border-gray-700 hover:border-orange-500/50 transition-all duration-300">
+                <div className="dark-surface p-6 rounded-2xl hover:border-[#FF991C]/50 transition-all duration-300">
                   <div className="flex items-center mb-4">
-                    <Phone className="w-8 h-8 text-orange-500 mr-4" />
+                    <Phone className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
                       <h3 className="text-xl font-semibold text-white">Call Us</h3>
                       <p className="text-gray-400">+1 (555) 123-4567</p>
@@ -781,9 +793,9 @@ const HomePage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="bg-gray-800/50 p-6 rounded-2xl border border-gray-700 hover:border-orange-500/50 transition-all duration-300">
+                <div className="dark-surface p-6 rounded-2xl hover:border-[#FF991C]/50 transition-all duration-300">
                   <div className="flex items-center mb-4">
-                    <MapPin className="w-8 h-8 text-orange-500 mr-4" />
+                    <MapPin className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
                       <h3 className="text-xl font-semibold text-white">Visit Us</h3>
                       <p className="text-gray-400">123 Tech Street, Innovation City</p>
@@ -794,9 +806,9 @@ const HomePage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="bg-gray-800/50 p-6 rounded-2xl border border-gray-700 hover:border-orange-500/50 transition-all duration-300">
+                <div className="dark-surface p-6 rounded-2xl hover:border-[#FF991C]/50 transition-all duration-300">
                   <div className="flex items-center mb-4">
-                    <Clock className="w-8 h-8 text-orange-500 mr-4" />
+                    <Clock className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
                       <h3 className="text-xl font-semibold text-white">Business Hours</h3>
                       <p className="text-gray-400">Mon - Fri: 9:00 AM - 6:00 PM</p>
@@ -813,7 +825,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-gray-800 to-gray-900">
+      <section className="py-20 bg-gradient-to-r from-gray-900 to-gray-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl lg:text-5xl font-bold mb-6">
@@ -823,8 +835,12 @@ const HomePage: React.FC = () => {
               Let's discuss how INNOTECH can help you achieve your technology goals and drive growth.
             </p>
             <a
-              href="/contact"
-              className="group inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25"
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="group inline-flex items-center space-x-2 bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/25"
             >
               <span>Contact Us Today</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
