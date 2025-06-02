@@ -31,7 +31,8 @@ import {
   Award,
   Lightbulb,
   Heart,
-  ChevronUp
+  ChevronUp,
+  CloudCog
 } from 'lucide-react';
 
 const HomePage: React.FC = () => {
@@ -92,13 +93,12 @@ const HomePage: React.FC = () => {
       features: [
         'Full-stack web development',
         'Desktop application development',
-        'API development and integration',
+        'Custom web applications',
         'Legacy system modernization',
         'Agile development methodology',
         'Quality assurance and testing'
       ],
-      price: 'Starting from $5,000',
-      popular: false,
+      popular: true,
     },
     {
       icon: <Cloud className="w-12 h-12" />,
@@ -113,23 +113,21 @@ const HomePage: React.FC = () => {
         'Cost optimization',
         '24/7 monitoring and support'
       ],
-      price: 'Starting from $3,000',
-      popular: true,
+      popular: false,
     },
     {
-      icon: <Shield className="w-12 h-12" />,
-      title: 'Cybersecurity Services',
-      shortDesc: 'Comprehensive security solutions to protect your business.',
-      description: 'Safeguard your digital assets with our advanced cybersecurity services.',
+      icon: <CloudCog className="w-12 h-12" />,
+      title: 'API Development and Integration',
+      shortDesc: 'Robust API solutions for seamless system connectivity.',
+      description: 'Connect your systems and applications with our comprehensive API development and integration services.',
       features: [
-        'Security audits and assessments',
-        'Penetration testing',
-        'Incident response planning',
-        'Compliance management',
-        'Employee security training',
-        'Continuous monitoring'
+        'RESTful API development',
+        'Third-party API integration',
+        'API documentation and testing',
+        'Microservices architecture',
+        'API security and authentication',
+        'Real-time data synchronization'
       ],
-      price: 'Starting from $2,500',
       popular: false,
     },
     {
@@ -145,7 +143,6 @@ const HomePage: React.FC = () => {
         'Real-time reporting',
         'Machine learning integration'
       ],
-      price: 'Starting from $4,000',
       popular: false,
     },
     {
@@ -161,7 +158,6 @@ const HomePage: React.FC = () => {
         'Push notifications',
         'Analytics integration'
       ],
-      price: 'Starting from $8,000',
       popular: false,
     },
     {
@@ -177,7 +173,6 @@ const HomePage: React.FC = () => {
         'Help desk support',
         'System maintenance'
       ],
-      price: 'Starting from $150/hour',
       popular: false,
     },
   ];
@@ -307,7 +302,7 @@ const HomePage: React.FC = () => {
   // Initialize stats rotation
   useEffect(() => {
     if (!isClient) return;
-    
+
     const interval = setInterval(() => {
       setCurrentStat((prev) => (prev + 1) % stats.length);
     }, 3000);
@@ -318,7 +313,7 @@ const HomePage: React.FC = () => {
   // Initialize animations
   useEffect(() => {
     if (!isClient) return;
-    
+
     const timer = setTimeout(() => {
       initializeAnimations();
     }, 100);
@@ -888,11 +883,6 @@ const HomePage: React.FC = () => {
                     </div>
                   ))}
                 </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="text-[#FF991C] font-semibold">{service.price}</div>
-                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-[#FF991C] group-hover:translate-x-1 transition-all duration-300" />
-                </div>
               </div>
             ))}
           </div>
@@ -928,14 +918,6 @@ const HomePage: React.FC = () => {
                   </div>
                 ))}
               </div>
-              <div className="mt-8 pt-6 border-t border-gray-700">
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-400">Starting Price:</span>
-                  <span className="text-2xl font-bold text-[#FF991C]">
-                    {services[activeService].price}
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -954,6 +936,41 @@ const HomePage: React.FC = () => {
             </p>
           </div>
 
+          {/* Map Section */}
+          <div className="mb-16 animate-on-scroll">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold mb-4 text-white">Our Location</h2>
+              <p className="text-gray-400">Visit us at our office in Vientiane, Laos</p>
+            </div>
+            <div className="dark-surface p-4 rounded-2xl overflow-hidden hover:border-[#FF991C]/50 transition-all duration-300 glow-on-hover">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3824.486!2d102.6206124!3d17.9916111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTfCsDU5JzI5LjgiTiAxMDLCsDM3JzIyLjMiRQ!5e0!3m2!1sen!2sla!4v1735833600000!5m2!1sen!2sla"
+                width="100%"
+                height="400"
+                style={{ border: 0, borderRadius: '1rem' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="INNOTECH Service Office Location - 17°59'29.8&quot;N 102°37'22.3&quot;E"
+                className="rounded-2xl"
+              />
+              <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="inline-flex items-center space-x-2 text-gray-400">
+                  <MapPin className="w-4 h-4 text-[#FF991C]" />
+                  <span className="text-sm">17°59'29.8"N 102°37'22.3"E</span>
+                </div>
+                <a
+                  href="https://www.google.com/maps/place/17%C2%B059'29.8%22N+102%C2%B037'22.3%22E/@17.9916111,102.6206124,17z/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 text-[#FF991C] hover:text-orange-400 transition-colors duration-200 text-sm font-medium"
+                >
+                  <span>Open in Google Maps</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 animate-on-scroll">
             {/* Contact Form */}
             <div className="animate-slide-left">
@@ -1075,7 +1092,7 @@ const HomePage: React.FC = () => {
                     <Mail className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
                       <h3 className="text-xl font-semibold text-white">Email Us</h3>
-                      <p className="text-gray-400">info@innotechservice.com</p>
+                      <p className="text-gray-400">innotech-service@outlook.com</p>
                     </div>
                   </div>
                   <p className="text-gray-400 text-sm">
@@ -1088,7 +1105,7 @@ const HomePage: React.FC = () => {
                     <Phone className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
                       <h3 className="text-xl font-semibold text-white">Call Us</h3>
-                      <p className="text-gray-400">+1 (555) 123-4567</p>
+                      <p className="text-gray-400">+856 20 22666395 or +856 20 22115245</p>
                     </div>
                   </div>
                   <p className="text-gray-400 text-sm">
@@ -1101,7 +1118,7 @@ const HomePage: React.FC = () => {
                     <MapPin className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
                       <h3 className="text-xl font-semibold text-white">Visit Us</h3>
-                      <p className="text-gray-400">123 Tech Street, Innovation City</p>
+                      <p className="text-gray-400">B.Phonetong-Savang Street, Chanthabuly, Vientiane Capital.</p>
                     </div>
                   </div>
                   <p className="text-gray-400 text-sm">
@@ -1114,7 +1131,7 @@ const HomePage: React.FC = () => {
                     <Clock className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
                       <h3 className="text-xl font-semibold text-white">Business Hours</h3>
-                      <p className="text-gray-400">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                      <p className="text-gray-400">Mon - Fri: 9:00 AM - 5:00 PM</p>
                     </div>
                   </div>
                   <p className="text-gray-400 text-sm">

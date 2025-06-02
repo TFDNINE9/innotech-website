@@ -241,9 +241,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div>
               <h3 className="text-white font-semibold mb-4">Contact Info</h3>
               <div className="space-y-2 text-gray-400">
-                <p>Email: info@innotechservice.com</p>
-                <p>Phone: +1 (555) 123-4567</p>
-                <p>Address: 123 Tech Street, Innovation City</p>
+                <p>Email: innotech-service@outlook.com</p>
+                <p>Phone: +856 20 22666395 or +856 20 22115245 </p>
+                <p>Address: B.Phonetong-Savang Street, Chanthabuly, Vientiane Capital.</p>
               </div>
             </div>
           </div>
