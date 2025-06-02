@@ -1,7 +1,7 @@
 // src/app/page.tsx
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import Layout from '../components/Layout';
 import {
   ArrowRight,
@@ -30,13 +30,16 @@ import {
   Target,
   Award,
   Lightbulb,
-  Heart
+  Heart,
+  ChevronUp
 } from 'lucide-react';
 
 const HomePage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentStat, setCurrentStat] = useState(0);
   const [activeService, setActiveService] = useState(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -45,6 +48,10 @@ const HomePage: React.FC = () => {
     message: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Refs for animation observers
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const animatedElementsRef = useRef<Set<Element>>(new Set());
 
   const stats = [
     { number: 500, label: 'Happy Clients', suffix: '+' },
@@ -235,12 +242,105 @@ const HomePage: React.FC = () => {
     },
   ];
 
+  // Initialize animations
+  const initializeAnimations = useCallback(() => {
+    if (!isClient || observerRef.current) return;
+
+    try {
+      observerRef.current = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !animatedElementsRef.current.has(entry.target)) {
+              entry.target.classList.add('animate-in');
+              animatedElementsRef.current.add(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        }
+      );
+
+      // Observe all animatable elements
+      const animatableElements = document.querySelectorAll('.animate-on-scroll, .animate-fade-in, .animate-slide-left, .animate-slide-right, .animate-scale, .stagger-animation');
+      animatableElements.forEach((el) => {
+        if (observerRef.current) {
+          observerRef.current.observe(el);
+        }
+      });
+    } catch (error) {
+      console.error('Error initializing animations:', error);
+    }
+  }, [isClient]);
+
+  // Handle scroll for showing/hiding scroll-to-top button
+  const handleScroll = useCallback(() => {
+    if (!isClient) return;
+    setShowScrollTop(window.scrollY > 300);
+  }, [isClient]);
+
+  // Scroll to top function
+  const scrollToTop = useCallback(() => {
+    if (!isClient) return;
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, [isClient]);
+
+  // Smooth scroll to element
+  const scrollToElement = useCallback((elementId: string) => {
+    if (!isClient) return;
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [isClient]);
+
+  // Client-side initialization
   useEffect(() => {
+    setIsClient(true);
     setIsVisible(true);
+  }, []);
+
+  // Initialize stats rotation
+  useEffect(() => {
+    if (!isClient) return;
+    
     const interval = setInterval(() => {
       setCurrentStat((prev) => (prev + 1) % stats.length);
     }, 3000);
+
     return () => clearInterval(interval);
+  }, [isClient, stats.length]);
+
+  // Initialize animations
+  useEffect(() => {
+    if (!isClient) return;
+    
+    const timer = setTimeout(() => {
+      initializeAnimations();
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [isClient, initializeAnimations]);
+
+  // Handle scroll events
+  useEffect(() => {
+    if (!isClient) return;
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isClient, handleScroll]);
+
+  // Cleanup
+  useEffect(() => {
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -257,13 +357,36 @@ const HomePage: React.FC = () => {
     }, 3000);
   };
 
+  // Don't render animations until client-side
+  if (!isClient) {
+    return (
+      <Layout>
+        {/* Simplified content without animations for SSR */}
+        <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-[#FF991C] bg-clip-text text-transparent">
+              Transform Your Business
+            </h1>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-semibold mb-8 text-gray-200">
+              with INNO<span className="text-[#FF991C]">TECH</span> Solutions
+            </h2>
+            <p className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+              We deliver innovative technology services that empower businesses to thrive in the digital age.
+            </p>
+          </div>
+        </section>
+        {/* Add other sections without animations here if needed */}
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       {/* Home Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-[#FF991C] rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-          <div className="absolute top-40 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-75"></div>
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#FF991C] rounded-full mix-blend-multiply filter blur-xl animate-pulse float-animation"></div>
+          <div className="absolute top-40 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-75 float-slow"></div>
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-150"></div>
         </div>
 
@@ -281,27 +404,19 @@ const HomePage: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a
-                href="#services"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="group bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/25 flex items-center space-x-2"
+              <button
+                onClick={() => scrollToElement('services')}
+                className="group bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/25 flex items-center space-x-2 pulse-animation"
               >
                 <span>Get Started</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </a>
-              <a
-                href="#about"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-                }}
+              </button>
+              <button
+                onClick={() => scrollToElement('about')}
                 className="group border-2 border-gray-600 hover:border-white text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:bg-white hover:text-gray-900"
               >
                 Learn More
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -312,9 +427,9 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-gray-900/50">
+      <section className="py-20 bg-gray-900/50 animate-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 stagger-animation">
             {stats.map((stat, index) => (
               <div
                 key={index}
@@ -332,9 +447,9 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Features Section */}
-      <section className="section-padding">
+      <section className="section-padding animate-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl lg:text-5xl font-bold mb-6">
               Why Choose INNO<span className="text-[#FF991C]">TECH</span>
             </h2>
@@ -343,11 +458,11 @@ const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-animation">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="group p-6 dark-surface rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50"
+                className="group p-6 dark-surface rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50 card-hover"
               >
                 <div className="text-[#FF991C] mb-4 group-hover:scale-110 transition-transform duration-300">
                   {feature.icon}
@@ -365,7 +480,7 @@ const HomePage: React.FC = () => {
       {/* About Section */}
       <section id="about" className="section-padding bg-gray-900/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-on-scroll">
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-[#FF991C] bg-clip-text text-transparent">
               About INNOTECH Service
             </h1>
@@ -376,7 +491,7 @@ const HomePage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-            <div>
+            <div className="animate-slide-left animate-on-scroll">
               <h2 className="text-3xl lg:text-4xl font-bold mb-6">Our Story</h2>
               <div className="space-y-6 text-gray-300 leading-relaxed">
                 <p>
@@ -398,9 +513,9 @@ const HomePage: React.FC = () => {
                 </p>
               </div>
             </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-[#FF991C]/20 to-purple-500/20 p-8 rounded-2xl backdrop-blur-sm border border-gray-700">
-                <div className="grid grid-cols-2 gap-6">
+            <div className="relative animate-slide-right animate-on-scroll">
+              <div className="bg-gradient-to-br from-[#FF991C]/20 to-purple-500/20 p-8 rounded-2xl backdrop-blur-sm border border-gray-700 glow-on-hover">
+                <div className="grid grid-cols-2 gap-6 stagger-animation">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-[#FF991C] mb-2">2015</div>
                     <div className="text-sm text-gray-400">Company Founded</div>
@@ -423,8 +538,8 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* Technical Expertise Section */}
-          <div className="mb-20">
-            <div className="text-center mb-16">
+          <div className="mb-20 animate-on-scroll">
+            <div className="text-center mb-16 animate-fade-in">
               <h2 className="text-3xl lg:text-4xl font-bold mb-6">Our Technical Expertise</h2>
               <p className="text-xl text-gray-400 max-w-3xl mx-auto">
                 We leverage cutting-edge technologies and industry best practices to deliver robust,
@@ -432,9 +547,9 @@ const HomePage: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 stagger-animation">
               {/* Frontend Development */}
-              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50">
+              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50 card-hover">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-[#FF991C] to-orange-600 rounded-lg flex items-center justify-center mr-4">
                     <Code className="w-6 h-6 text-white" />
@@ -493,7 +608,7 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Backend Development */}
-              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50">
+              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50 card-hover">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
                     <Database className="w-6 h-6 text-white" />
@@ -538,7 +653,7 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* iOS Development */}
-              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50">
+              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50 card-hover">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-gray-400 to-gray-500 rounded-lg flex items-center justify-center mr-4">
                     <Smartphone className="w-6 h-6 text-white" />
@@ -577,7 +692,7 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Android Development */}
-              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50">
+              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50 card-hover">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mr-4">
                     <img src="/images/logo_android.png" className="w-8 h-8 object-contain" alt="Android" />
@@ -616,8 +731,9 @@ const HomePage: React.FC = () => {
               </div>
             </div>
           </div>
+
           {/* Values Section */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">Our Core Values</h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               These principles guide everything we do and shape how we interact with our clients,
@@ -625,11 +741,11 @@ const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 stagger-animation animate-on-scroll">
             {values.map((value, index) => (
               <div
                 key={index}
-                className="group p-8 dark-surface rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50"
+                className="group p-8 dark-surface rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50 card-hover"
               >
                 <div className="text-[#FF991C] mb-4 group-hover:scale-110 transition-transform duration-300">
                   {value.icon}
@@ -643,7 +759,7 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* Team Section */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">Meet Our Leadership Team</h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               Our experienced leadership team brings together decades of expertise in technology,
@@ -651,11 +767,11 @@ const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-animation animate-on-scroll">
             {team.map((member, index) => (
               <div
                 key={index}
-                className="group text-center dark-surface p-6 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:border-[#FF991C]/50"
+                className="group text-center dark-surface p-6 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:border-[#FF991C]/50 card-hover"
               >
                 <div className="w-24 h-24 bg-gradient-to-br from-[#FF991C] to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <span className="text-2xl font-bold text-white">
@@ -675,11 +791,11 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Vision Section */}
-      <section id="vision" className="section-padding">
+      <section id="vision" className="section-padding animate-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-scale">
             <div className="flex items-center justify-center mb-8">
-              <Eye className="w-16 h-16 text-[#FF991C] mr-4" />
+              <Eye className="w-16 h-16 text-[#FF991C] mr-4 float-animation" />
               <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-white to-[#FF991C] bg-clip-text text-transparent">
                 Our Vision
               </h1>
@@ -694,7 +810,7 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-fade-in animate-on-scroll">
             <h2 className="text-3xl lg:text-4xl font-bold mb-8">Our Mission</h2>
             <div className="max-w-4xl mx-auto">
               <blockquote className="text-2xl lg:text-3xl text-gray-300 italic leading-relaxed mb-8">
@@ -713,7 +829,7 @@ const HomePage: React.FC = () => {
       {/* Services Section */}
       <section id="services" className="section-padding bg-gray-900/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-on-scroll">
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-[#FF991C] bg-clip-text text-transparent">
               Our Services
             </h1>
@@ -737,18 +853,18 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-20 stagger-animation animate-on-scroll">
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`group relative p-8 rounded-2xl transition-all duration-500 transform hover:scale-105 cursor-pointer ${activeService === index
+                className={`group relative p-8 rounded-2xl transition-all duration-500 transform hover:scale-105 cursor-pointer card-hover ${activeService === index
                   ? 'bg-gradient-to-br from-[#FF991C]/20 to-orange-600/20 border-2 border-[#FF991C]/50 shadow-2xl shadow-[#FF991C]/20'
                   : 'dark-surface hover:bg-gray-800 hover:border-[#FF991C]/30'
                   }`}
                 onClick={() => setActiveService(index)}
               >
                 {service.popular && (
-                  <div className="absolute -top-3 -right-3 bg-gradient-to-r from-[#FF991C] to-orange-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center">
+                  <div className="absolute -top-3 -right-3 bg-gradient-to-r from-[#FF991C] to-orange-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center pulse-animation">
                     <Star className="w-3 h-3 mr-1" />
                     Popular
                   </div>
@@ -782,8 +898,8 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* Service Details */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center animate-on-scroll">
+            <div className="animate-slide-left">
               <div className="text-[#FF991C] mb-4">
                 {services[activeService].icon}
               </div>
@@ -793,20 +909,16 @@ const HomePage: React.FC = () => {
               <p className="text-lg text-gray-300 mb-8 leading-relaxed">
                 {services[activeService].description}
               </p>
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+              <button
+                onClick={() => scrollToElement('contact')}
+                className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 glow-on-hover"
               >
                 <span>Get Started</span>
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </button>
             </div>
 
-            <div className="dark-surface p-8 rounded-2xl">
+            <div className="dark-surface p-8 rounded-2xl animate-slide-right glow-on-hover">
               <h3 className="text-xl font-bold mb-6 text-white">What's Included:</h3>
               <div className="space-y-3">
                 {services[activeService].features.map((feature, index) => (
@@ -832,7 +944,7 @@ const HomePage: React.FC = () => {
       {/* Contact Section */}
       <section id="contact" className="section-padding">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-on-scroll">
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-[#FF991C] bg-clip-text text-transparent">
               Get In Touch
             </h1>
@@ -842,13 +954,13 @@ const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 animate-on-scroll">
             {/* Contact Form */}
-            <div>
+            <div className="animate-slide-left">
               <h2 className="text-3xl font-bold mb-8 text-white">Send Us a Message</h2>
 
               {isSubmitted ? (
-                <div className="bg-green-500/20 border border-green-500/50 rounded-2xl p-8 text-center">
+                <div className="bg-green-500/20 border border-green-500/50 rounded-2xl p-8 text-center animate-scale">
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
                   <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
                   <p className="text-gray-300">
@@ -944,7 +1056,7 @@ const HomePage: React.FC = () => {
 
                   <button
                     type="submit"
-                    className="group w-full bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/25 flex items-center justify-center space-x-2"
+                    className="group w-full bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/25 flex items-center justify-center space-x-2 glow-on-hover"
                   >
                     <span>Send Message</span>
                     <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -954,11 +1066,11 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* Contact Info */}
-            <div>
+            <div className="animate-slide-right">
               <h2 className="text-3xl font-bold mb-8 text-white">Contact Information</h2>
 
-              <div className="space-y-6">
-                <div className="dark-surface p-6 rounded-2xl hover:border-[#FF991C]/50 transition-all duration-300">
+              <div className="space-y-6 stagger-animation">
+                <div className="dark-surface p-6 rounded-2xl hover:border-[#FF991C]/50 transition-all duration-300 glow-on-hover">
                   <div className="flex items-center mb-4">
                     <Mail className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
@@ -971,7 +1083,7 @@ const HomePage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="dark-surface p-6 rounded-2xl hover:border-[#FF991C]/50 transition-all duration-300">
+                <div className="dark-surface p-6 rounded-2xl hover:border-[#FF991C]/50 transition-all duration-300 glow-on-hover">
                   <div className="flex items-center mb-4">
                     <Phone className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
@@ -984,7 +1096,7 @@ const HomePage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="dark-surface p-6 rounded-2xl hover:border-[#FF991C]/50 transition-all duration-300">
+                <div className="dark-surface p-6 rounded-2xl hover:border-[#FF991C]/50 transition-all duration-300 glow-on-hover">
                   <div className="flex items-center mb-4">
                     <MapPin className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
@@ -997,7 +1109,7 @@ const HomePage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="dark-surface p-6 rounded-2xl hover:border-[#FF991C]/50 transition-all duration-300">
+                <div className="dark-surface p-6 rounded-2xl hover:border-[#FF991C]/50 transition-all duration-300 glow-on-hover">
                   <div className="flex items-center mb-4">
                     <Clock className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
@@ -1016,8 +1128,8 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-gray-900 to-gray-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 bg-gradient-to-r from-gray-900 to-gray-950 animate-on-scroll">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-scale">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl lg:text-5xl font-bold mb-6">
               Ready to Transform Your Business?
@@ -1025,20 +1137,25 @@ const HomePage: React.FC = () => {
             <p className="text-xl text-gray-400 mb-8">
               Let's discuss how INNOTECH can help you achieve your technology goals and drive growth.
             </p>
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="group inline-flex items-center space-x-2 bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/25"
+            <button
+              onClick={() => scrollToElement('contact')}
+              className="group inline-flex items-center space-x-2 bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/25 pulse-animation glow-on-hover"
             >
               <span>Contact Us Today</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </a>
+            </button>
           </div>
         </div>
       </section>
+
+      {/* Scroll to Top Button */}
+      <button
+        onClick={scrollToTop}
+        className={`scroll-to-top ${showScrollTop ? 'visible' : 'hidden'}`}
+        aria-label="Scroll to top"
+      >
+        <ChevronUp className="w-6 h-6 text-white" />
+      </button>
     </Layout>
   );
 };
