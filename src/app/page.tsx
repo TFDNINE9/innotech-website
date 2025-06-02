@@ -3,12 +3,12 @@
 
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
-import { 
-  ArrowRight, 
-  Zap, 
-  Shield, 
-  Rocket, 
-  Users, 
+import {
+  ArrowRight,
+  Zap,
+  Shield,
+  Rocket,
+  Users,
   ChevronDown,
   Eye,
   Brain,
@@ -276,10 +276,10 @@ const HomePage: React.FC = () => {
               with INNO<span className="text-[#FF991C]">TECH</span> Solutions
             </h2>
             <p className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-              We deliver innovative technology services that empower businesses to thrive in the digital age. 
+              We deliver innovative technology services that empower businesses to thrive in the digital age.
               From custom software development to IT consulting, we're your partner in success.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
                 href="#services"
@@ -318,9 +318,8 @@ const HomePage: React.FC = () => {
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className={`text-center transform transition-all duration-500 ${
-                  currentStat === index ? 'scale-110' : 'scale-100'
-                }`}
+                className={`text-center transform transition-all duration-500 ${currentStat === index ? 'scale-110' : 'scale-100'
+                  }`}
               >
                 <div className="text-4xl lg:text-5xl font-bold text-[#FF991C] mb-2">
                   {stat.number}{stat.suffix}
@@ -371,7 +370,7 @@ const HomePage: React.FC = () => {
               About INNOTECH Service
             </h1>
             <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
-              We are a team of passionate technology professionals dedicated to transforming businesses 
+              We are a team of passionate technology professionals dedicated to transforming businesses
               through innovative digital solutions and exceptional service delivery.
             </p>
           </div>
@@ -381,20 +380,20 @@ const HomePage: React.FC = () => {
               <h2 className="text-3xl lg:text-4xl font-bold mb-6">Our Story</h2>
               <div className="space-y-6 text-gray-300 leading-relaxed">
                 <p>
-                  Founded in 2015, INNOTECH Service emerged from a simple yet powerful vision: to bridge 
-                  the gap between cutting-edge technology and practical business solutions. Our founders, 
-                  coming from diverse backgrounds in software development, business consulting, and digital 
-                  transformation, recognized the need for a service provider that truly understands both 
+                  Founded in 2015, INNOTECH Service emerged from a simple yet powerful vision: to bridge
+                  the gap between cutting-edge technology and practical business solutions. Our founders,
+                  coming from diverse backgrounds in software development, business consulting, and digital
+                  transformation, recognized the need for a service provider that truly understands both
                   technology and business.
                 </p>
                 <p>
-                  Over the years, we've grown from a small startup to a trusted technology partner for 
-                  businesses across various industries. Our journey has been marked by continuous learning, 
+                  Over the years, we've grown from a small startup to a trusted technology partner for
+                  businesses across various industries. Our journey has been marked by continuous learning,
                   adaptation, and an unwavering commitment to our clients' success.
                 </p>
                 <p>
-                  Today, we're proud to have helped over 500 businesses transform their operations, 
-                  improve their efficiency, and achieve their digital goals. Our success is measured 
+                  Today, we're proud to have helped over 500 businesses transform their operations,
+                  improve their efficiency, and achieve their digital goals. Our success is measured
                   not just in projects delivered, but in the lasting relationships we've built with our clients.
                 </p>
               </div>
@@ -423,11 +422,205 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
+          {/* Technical Expertise Section */}
+          <div className="mb-20">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6">Our Technical Expertise</h2>
+              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                We leverage cutting-edge technologies and industry best practices to deliver robust,
+                scalable solutions that drive business success.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Frontend Development */}
+              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#FF991C] to-orange-600 rounded-lg flex items-center justify-center mr-4">
+                    <Code className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Frontend Development</h3>
+                </div>
+                <p className="text-gray-400 mb-6">
+                  Creating engaging, responsive user interfaces with modern frameworks and technologies.
+                </p>
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/pngwing.com.png" className="w-12 h-12 object-contain" alt="React" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">React</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/angular.png" className="w-12 h-12 object-contain" alt="Angular" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Angular</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/vue.png" className="w-12 h-12 object-contain" alt="Vue.js" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Vue.js</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/next.png" className="w-12 h-12 object-contain" alt="Next.js" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Next.js</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/flutter.png" className="w-12 h-12 object-contain" alt="Flutter" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Flutter</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/blazor.png" className="w-12 h-12 object-contain" alt="Blazor" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Blazor</span>
+                  </div>
+                </div>
+                <div className="flex justify-center">
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px] w-32">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/javascript.png" className="w-12 h-12 object-contain" alt="JavaScript" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">JavaScript</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Backend Development */}
+              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                    <Database className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Backend Development</h3>
+                </div>
+                <p className="text-gray-400 mb-6">
+                  Building robust server-side solutions with scalable architecture and cloud integration.
+                </p>
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/aspcore.png" className="w-12 h-12 object-contain" alt="ASP.NET Core" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">ASP.NET</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/node.png" className="w-12 h-12 object-contain" alt="Node.js" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Node.js</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/docker.png" className="w-12 h-12 object-contain" alt="Docker" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Docker</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/kubernete.png" className="w-12 h-12 object-contain" alt="Kubernetes" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Kubernetes</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px] col-span-2">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/Microsoft_Azure.svg.png" className="w-12 h-12 object-contain" alt="Microsoft Azure" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Microsoft Azure</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* iOS Development */}
+              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-gray-400 to-gray-500 rounded-lg flex items-center justify-center mr-4">
+                    <Smartphone className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">iOS Development</h3>
+                </div>
+                <p className="text-gray-400 mb-6">
+                  Native and cross-platform iOS applications with optimal performance and user experience.
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/xcode.png" className="w-12 h-12 object-contain" alt="Xcode" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Xcode</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/swift.png" className="w-12 h-12 object-contain" alt="Swift" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Swift</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/pngwing.com.png" className="w-12 h-12 object-contain" alt="React Native" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">React Native</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/flutter.png" className="w-12 h-12 object-contain" alt="Flutter" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Flutter</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Android Development */}
+              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mr-4">
+                    <img src="/images/logo_android.png" className="w-8 h-8 object-contain" alt="Android" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Android Development</h3>
+                </div>
+                <p className="text-gray-400 mb-6">
+                  Powerful Android applications using modern development tools and frameworks.
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/android.png" className="w-12 h-12 object-contain" alt="Android Studio" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Android Studio</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/kotlin.png" className="w-12 h-12 object-contain" alt="Kotlin" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Kotlin</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/pngwing.com.png" className="w-12 h-12 object-contain" alt="React Native" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">React Native</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/flutter.png" className="w-12 h-12 object-contain" alt="Flutter" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Flutter</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           {/* Values Section */}
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">Our Core Values</h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              These principles guide everything we do and shape how we interact with our clients, 
+              These principles guide everything we do and shape how we interact with our clients,
               partners, and each other.
             </p>
           </div>
@@ -453,7 +646,7 @@ const HomePage: React.FC = () => {
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">Meet Our Leadership Team</h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Our experienced leadership team brings together decades of expertise in technology, 
+              Our experienced leadership team brings together decades of expertise in technology,
               business strategy, and client service.
             </p>
           </div>
@@ -492,11 +685,11 @@ const HomePage: React.FC = () => {
               </h1>
             </div>
             <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-12">
-              Shaping the future of technology services by creating innovative solutions that transform 
+              Shaping the future of technology services by creating innovative solutions that transform
               businesses and empower communities worldwide.
             </p>
             <div className="text-lg text-gray-300 max-w-3xl mx-auto">
-              At INNOTECH Service, we envision a world where technology seamlessly integrates with business 
+              At INNOTECH Service, we envision a world where technology seamlessly integrates with business
               operations, enabling unprecedented growth, efficiency, and innovation across all industries.
             </div>
           </div>
@@ -505,11 +698,11 @@ const HomePage: React.FC = () => {
             <h2 className="text-3xl lg:text-4xl font-bold mb-8">Our Mission</h2>
             <div className="max-w-4xl mx-auto">
               <blockquote className="text-2xl lg:text-3xl text-gray-300 italic leading-relaxed mb-8">
-                "To empower businesses with innovative technology solutions that drive growth, 
+                "To empower businesses with innovative technology solutions that drive growth,
                 improve efficiency, and create lasting competitive advantages in an ever-evolving digital landscape."
               </blockquote>
               <p className="text-lg text-gray-400">
-                We believe that technology should be an enabler, not a barrier. Our mission is to make 
+                We believe that technology should be an enabler, not a barrier. Our mission is to make
                 advanced technology accessible, understandable, and profitable for businesses of all sizes.
               </p>
             </div>
@@ -525,7 +718,7 @@ const HomePage: React.FC = () => {
               Our Services
             </h1>
             <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-12">
-              Comprehensive technology solutions designed to accelerate your business growth and 
+              Comprehensive technology solutions designed to accelerate your business growth and
               digital transformation journey.
             </p>
             <div className="flex justify-center space-x-8 text-sm text-gray-400">
@@ -548,11 +741,10 @@ const HomePage: React.FC = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`group relative p-8 rounded-2xl transition-all duration-500 transform hover:scale-105 cursor-pointer ${
-                  activeService === index
-                    ? 'bg-gradient-to-br from-[#FF991C]/20 to-orange-600/20 border-2 border-[#FF991C]/50 shadow-2xl shadow-[#FF991C]/20'
-                    : 'dark-surface hover:bg-gray-800 hover:border-[#FF991C]/30'
-                }`}
+                className={`group relative p-8 rounded-2xl transition-all duration-500 transform hover:scale-105 cursor-pointer ${activeService === index
+                  ? 'bg-gradient-to-br from-[#FF991C]/20 to-orange-600/20 border-2 border-[#FF991C]/50 shadow-2xl shadow-[#FF991C]/20'
+                  : 'dark-surface hover:bg-gray-800 hover:border-[#FF991C]/30'
+                  }`}
                 onClick={() => setActiveService(index)}
               >
                 {service.popular && (
@@ -561,18 +753,17 @@ const HomePage: React.FC = () => {
                     Popular
                   </div>
                 )}
-                
-                <div className={`mb-6 transition-all duration-300 ${
-                  activeService === index ? 'text-orange-400 scale-110' : 'text-[#FF991C] group-hover:scale-110'
-                }`}>
+
+                <div className={`mb-6 transition-all duration-300 ${activeService === index ? 'text-orange-400 scale-110' : 'text-[#FF991C] group-hover:scale-110'
+                  }`}>
                   {service.icon}
                 </div>
-                
+
                 <h3 className="text-xl font-bold mb-3 text-white">{service.title}</h3>
                 <p className="text-gray-400 mb-6 group-hover:text-gray-300 transition-colors duration-300">
                   {service.shortDesc}
                 </p>
-                
+
                 <div className="space-y-2 mb-6">
                   {service.features.slice(0, 3).map((feature, idx) => (
                     <div key={idx} className="flex items-center text-sm text-gray-400">
@@ -581,7 +772,7 @@ const HomePage: React.FC = () => {
                     </div>
                   ))}
                 </div>
-                
+
                 <div className="flex items-center justify-between">
                   <div className="text-[#FF991C] font-semibold">{service.price}</div>
                   <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-[#FF991C] group-hover:translate-x-1 transition-all duration-300" />
@@ -614,7 +805,7 @@ const HomePage: React.FC = () => {
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
-            
+
             <div className="dark-surface p-8 rounded-2xl">
               <h3 className="text-xl font-bold mb-6 text-white">What's Included:</h3>
               <div className="space-y-3">
@@ -646,7 +837,7 @@ const HomePage: React.FC = () => {
               Get In Touch
             </h1>
             <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-12">
-              Ready to transform your business with innovative technology solutions? 
+              Ready to transform your business with innovative technology solutions?
               Let's start a conversation about your project.
             </p>
           </div>
@@ -655,7 +846,7 @@ const HomePage: React.FC = () => {
             {/* Contact Form */}
             <div>
               <h2 className="text-3xl font-bold mb-8 text-white">Send Us a Message</h2>
-              
+
               {isSubmitted ? (
                 <div className="bg-green-500/20 border border-green-500/50 rounded-2xl p-8 text-center">
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
@@ -765,7 +956,7 @@ const HomePage: React.FC = () => {
             {/* Contact Info */}
             <div>
               <h2 className="text-3xl font-bold mb-8 text-white">Contact Information</h2>
-              
+
               <div className="space-y-6">
                 <div className="dark-surface p-6 rounded-2xl hover:border-[#FF991C]/50 transition-all duration-300">
                   <div className="flex items-center mb-4">
