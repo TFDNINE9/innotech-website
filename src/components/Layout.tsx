@@ -3,7 +3,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronRight } from 'lucide-react';
 
 interface LayoutProps {
@@ -14,7 +13,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const pathname = usePathname();
 
   const navigation = [
     { name: 'Home', href: '/#home', section: 'home' },
@@ -213,7 +211,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <img 
                   src="/images/Logo-Horizontal-Negative.png" 
                   alt="Innotech Service Logo" 
-                  className="h-8 w-auto"
+                  className="h-20 w-auto"
                 />
               </div>
               <p className="text-gray-400 mb-4 max-w-md">

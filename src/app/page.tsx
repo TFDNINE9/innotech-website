@@ -591,8 +591,9 @@ const HomePage: React.FC = () => {
                     </div>
                     <span className="text-xs text-gray-400 mt-2 text-center">Blazor</span>
                   </div>
+
                 </div>
-                <div className="flex justify-center">
+                <div className='flex justify-center'>
                   <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px] w-32">
                     <div className="flex-1 flex items-center justify-center">
                       <img src="/images/javascript.png" className="w-12 h-12 object-contain" alt="JavaScript" />
@@ -626,39 +627,55 @@ const HomePage: React.FC = () => {
                     </div>
                     <span className="text-xs text-gray-400 mt-2 text-center">Node.js</span>
                   </div>
+
                   <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
                     <div className="flex-1 flex items-center justify-center">
-                      <img src="/images/docker.png" className="w-12 h-12 object-contain" alt="Docker" />
+                      <img src="/images/fastapi.png" className="w-12 h-12 object-contain" alt="Microsoft Azure" />
                     </div>
-                    <span className="text-xs text-gray-400 mt-2 text-center">Docker</span>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Fast API</span>
                   </div>
                   <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
                     <div className="flex-1 flex items-center justify-center">
-                      <img src="/images/kubernete.png" className="w-12 h-12 object-contain" alt="Kubernetes" />
+                      <img src="/images/tensorflow.png" className="w-12 h-12 object-contain" alt="Microsoft Azure" />
                     </div>
-                    <span className="text-xs text-gray-400 mt-2 text-center">Kubernetes</span>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Tensorflow A.I</span>
                   </div>
-                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px] col-span-2">
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
                     <div className="flex-1 flex items-center justify-center">
-                      <img src="/images/Microsoft_Azure.svg.png" className="w-12 h-12 object-contain" alt="Microsoft Azure" />
+                      <img src="/images/sql.png" className="w-12 h-12 object-contain" alt="SQL" />
                     </div>
-                    <span className="text-xs text-gray-400 mt-2 text-center">Microsoft Azure</span>
+                    <span className="text-xs text-gray-400 mt-2 text-center">SQL</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/python.png" className="w-12 h-12 object-contain" alt="python" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">python</span>
+                  </div>
+
+                </div>
+                <div className='flex justify-center'>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px] w-32">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/redis.png" className="w-12 h-12 object-contain" alt="redis" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">redis</span>
                   </div>
                 </div>
               </div>
 
-              {/* iOS Development */}
+              {/* iOS/android Development */}
               <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50 card-hover">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-gray-400 to-gray-500 rounded-lg flex items-center justify-center mr-4">
                     <Smartphone className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">iOS Development</h3>
+                  <h3 className="text-2xl font-bold text-white">Android/iOS Development</h3>
                 </div>
                 <p className="text-gray-400 mb-6">
-                  Native and cross-platform iOS applications with optimal performance and user experience.
+                  Native and cross-platform applications with optimal performance and user experience.
                 </p>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                   <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
                     <div className="flex-1 flex items-center justify-center">
                       <img src="/images/xcode.png" className="w-12 h-12 object-contain" alt="Xcode" />
@@ -683,44 +700,70 @@ const HomePage: React.FC = () => {
                     </div>
                     <span className="text-xs text-gray-400 mt-2 text-center">Flutter</span>
                   </div>
-                </div>
-              </div>
-
-              {/* Android Development */}
-              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50 card-hover">
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mr-4">
-                    <img src="/images/logo_android.png" className="w-8 h-8 object-contain" alt="Android" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">Android Development</h3>
-                </div>
-                <p className="text-gray-400 mb-6">
-                  Powerful Android applications using modern development tools and frameworks.
-                </p>
-                <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
                     <div className="flex-1 flex items-center justify-center">
                       <img src="/images/android.png" className="w-12 h-12 object-contain" alt="Android Studio" />
                     </div>
                     <span className="text-xs text-gray-400 mt-2 text-center">Android Studio</span>
                   </div>
+                  <div className='justify-center'>
+                    <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                      <div className="flex-1 flex items-center justify-center">
+                        <img src="/images/kotlin.png" className="w-12 h-12 object-contain" alt="Kotlin" />
+                      </div>
+                      <span className="text-xs text-gray-400 mt-2 text-center">Kotlin</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Devops */}
+              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50 card-hover">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mr-4">
+                    <img src="/images/devops.png" className="w-8 h-8 object-contain" alt="Android" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">DevOps & Infrastructure</h3>
+                </div>
+                <p className="text-gray-400 mb-6">
+                  Build, ship, and scale reliably with containerization, orchestration, and cloud infrastructure using Docker, Kubernetes, and Azure.
+                </p>
+                <div className="grid grid-cols-3 gap-4">
                   <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
                     <div className="flex-1 flex items-center justify-center">
-                      <img src="/images/kotlin.png" className="w-12 h-12 object-contain" alt="Kotlin" />
+                      <img src="/images/docker.png" className="w-12 h-12 object-contain" alt="Docker" />
                     </div>
-                    <span className="text-xs text-gray-400 mt-2 text-center">Kotlin</span>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Docker</span>
                   </div>
                   <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
                     <div className="flex-1 flex items-center justify-center">
-                      <img src="/images/pngwing.com.png" className="w-12 h-12 object-contain" alt="React Native" />
+                      <img src="/images/kubernete.png" className="w-12 h-12 object-contain" alt="Kubernetes" />
                     </div>
-                    <span className="text-xs text-gray-400 mt-2 text-center">React Native</span>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Kubernetes</span>
                   </div>
                   <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
                     <div className="flex-1 flex items-center justify-center">
-                      <img src="/images/flutter.png" className="w-12 h-12 object-contain" alt="Flutter" />
+                      <img src="/images/Microsoft_Azure.svg.png" className="w-12 h-12 object-contain" alt="Microsoft Azure" />
                     </div>
-                    <span className="text-xs text-gray-400 mt-2 text-center">Flutter</span>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Microsoft Azure</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/gitlab.png" className="w-12 h-12 object-contain" alt="gitlab" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">GitLab</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/postman.png" className="w-12 h-12 object-contain" alt="postman" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">Postman</span>
+                  </div>
+                  <div className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-700 transition-colors duration-200 min-h-[100px]">
+                    <div className="flex-1 flex items-center justify-center">
+                      <img src="/images/nignx.png" className="w-12 h-12 object-contain" alt="NGINX" />
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2 text-center">NGINX</span>
                   </div>
                 </div>
               </div>
@@ -755,9 +798,9 @@ const HomePage: React.FC = () => {
 
           {/* Team Section */}
           <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">Meet Our Leadership Team</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6">Meet Our Team</h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Our experienced leadership team brings together decades of expertise in technology,
+              Our experienced team brings together decades of expertise in technology,
               business strategy, and client service.
             </p>
           </div>
