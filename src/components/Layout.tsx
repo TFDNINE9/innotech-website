@@ -1,4 +1,3 @@
-// src/components/Layout.tsx
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -248,7 +247,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div>
               <h3 className="text-white font-semibold mb-4">{t('footer.contactInfo', 'common')}</h3>
               <div className="space-y-2 text-gray-400">
-                <p>{t('footer.email', 'common')}: innotech-service@outlook.com</p>
+                <p>{t('footer.email', 'common')}: contact@innotech.com.la</p>
                 <p>{t('footer.phone', 'common')}: +856 20 22666395 or +856 20 22115245 </p>
                 <p>{t('footer.address', 'common')}: B.Phonetong-Savang Street, Chanthabuly, Vientiane Capital.</p>
               </div>

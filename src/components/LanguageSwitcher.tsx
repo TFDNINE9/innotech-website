@@ -1,4 +1,3 @@
-// src/components/LanguageSwitcher.tsx
 'use client';
 
 import React, { useState } from 'react';

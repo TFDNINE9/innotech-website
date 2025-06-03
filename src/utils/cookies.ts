@@ -1,8 +1,3 @@
-// src/utils/cookie.ts
-
-/**
- * Get the value of a cookie
- */
 export function getCookie(name: string): string | undefined {
   if (typeof document === 'undefined') {
     return undefined;

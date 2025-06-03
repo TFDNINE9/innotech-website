@@ -1,4 +1,3 @@
-// src/app/page.tsx
 'use client';
 
 import React, { useEffect, useState, useRef, useCallback } from 'react';
@@ -12,12 +11,10 @@ import {
   Users,
   ChevronDown,
   Eye,
-  Brain,
   Globe,
   Database,
   Cloud,
   Smartphone,
-  Cpu,
   Code,
   Cog,
   Check,
@@ -944,7 +941,7 @@ const HomePage: React.FC = () => {
             <div className="max-w-4xl mx-auto bg-gradient-to-br from-[#FF991C]/10 to-purple-500/10 p-8 lg:p-12 rounded-2xl border border-gray-700 hover:border-[#FF991C]/50 transition-all duration-300 glow-on-hover">
               <div className="flex items-center justify-center mb-6">
                 <Target className="w-12 h-12 text-[#FF991C] mr-4" />
-                <h2 className="text-3xl lg:text-4xl font-bold text-white">{t('commitment.title', 'vision')}</h2>
+                <h3 className="text-3xl lg:text-4xl font-bold text-white">{t('commitment.title', 'vision')}</h3>
               </div>
               <p className="text-xl text-gray-300 leading-relaxed mb-6">
                 {t('commitment.description', 'vision')}
