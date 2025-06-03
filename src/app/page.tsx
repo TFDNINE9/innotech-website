@@ -1184,20 +1184,33 @@ const HomePage: React.FC = () => {
                       <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-2">
                         {t('form.serviceInterest', 'common')}
                       </label>
-                      <select
-                        id="service"
-                        name="service"
-                        value={formData.service}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white transition-all duration-200"
-                      >
-                        <option value="">{t('form.placeholders.service', 'common')}</option>
-                        {services.map((service, index) => (
-                          <option key={index} value={service.title}>
-                            {service.title}
-                          </option>
-                        ))}
-                      </select>
+                      <div className="relative">
+                        <select
+                          id="service"
+                          name="service"
+                          value={formData.service}
+                          onChange={handleInputChange}
+                          className="w-full px-4 pr-12 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white transition-all duration-200 appearance-none"
+                        >
+                          <option value="">{t('form.placeholders.service', 'common')}</option>
+                          {services.map((service, index) => (
+                            <option key={index} value={service.title}>
+                              {service.title}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+                          <svg
+                            className="w-4 h-4 text-gray-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
 
