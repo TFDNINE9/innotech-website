@@ -3,6 +3,9 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import '@/styles/fonts.css'; // Import custom fonts
+import LanguageProviderWrapper from '@/components/LanguageProviderWrapper';
+import LanguageAttribute from '@/components/LanguageAttribute';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -69,9 +72,12 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <div id="__next">
-          {children}
-        </div>
+        <LanguageProviderWrapper>
+          <LanguageAttribute />
+          <div id="__next">
+            {children}
+          </div>
+        </LanguageProviderWrapper>
       </body>
     </html>
   );

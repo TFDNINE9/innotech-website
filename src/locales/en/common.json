@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "vision": "Vision",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "buttons": {
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "contactUs": "Contact Us",
+    "sendMessage": "Send Message",
+    "submit": "Submit"
+  },
+  "footer": {
+    "description": "Delivering innovative technology solutions to transform your business and drive growth in the digital age.",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Info",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "allRightsReserved": "All rights reserved."
+  },
+  "form": {
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "company": "Company Name",
+    "serviceInterest": "Service Interested In",
+    "message": "Message",
+    "placeholders": {
+      "fullName": "Your full name",
+      "email": "your.email@company.com",
+      "company": "Your company name",
+      "service": "Select a service",
+      "message": "Tell us about your project requirements, timeline, and any specific questions you have..."
+    },
+    "validation": {
+      "required": "This field is required",
+      "invalidEmail": "Please enter a valid email address"
+    },
+    "success": {
+      "title": "Message Sent!",
+      "description": "Thank you for reaching out. We'll get back to you within 24 hours."
+    }
+  },
+  "languages": {
+    "en": "English",
+    "lo": "Lao"
+  }
+}

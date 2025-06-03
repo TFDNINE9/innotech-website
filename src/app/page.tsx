@@ -3,6 +3,7 @@
 
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import Layout from '../components/Layout';
+import { useLanguage } from '@/context/LanguageContext';
 import {
   ArrowRight,
   Zap,
@@ -36,6 +37,9 @@ import {
 } from 'lucide-react';
 
 const HomePage: React.FC = () => {
+  // Get translation function from language context
+  const { t } = useLanguage();
+
   const [isVisible, setIsVisible] = useState(false);
   const [currentStat, setCurrentStat] = useState(0);
   const [activeService, setActiveService] = useState(0);
@@ -55,123 +59,123 @@ const HomePage: React.FC = () => {
   const animatedElementsRef = useRef<Set<Element>>(new Set());
 
   const stats = [
-    { number: 500, label: 'Happy Clients', suffix: '+' },
-    { number: 50, label: 'Projects Completed', suffix: '+' },
-    { number: 10, label: 'Years Experience', suffix: '+' },
-    { number: 24, label: 'Support Available', suffix: '/7' },
+    { number: 500, label: t('stats.happyClients', 'home'), suffix: '+' },
+    { number: 50, label: t('stats.projectsCompleted', 'home'), suffix: '+' },
+    { number: 10, label: t('stats.yearsExperience', 'home'), suffix: '+' },
+    { number: 24, label: t('stats.supportAvailable', 'home'), suffix: '/7' },
   ];
 
   const features = [
     {
       icon: <Zap className="w-8 h-8" />,
-      title: 'Fast & Reliable',
-      description: 'Lightning-fast solutions with 99.9% uptime guarantee for your business continuity.',
+      title: t('features.items.fastReliable.title', 'home'),
+      description: t('features.items.fastReliable.description', 'home'),
     },
     {
       icon: <Shield className="w-8 h-8" />,
-      title: 'Secure Solutions',
-      description: 'Enterprise-grade security measures to protect your data and business operations.',
+      title: t('features.items.secureSolutions.title', 'home'),
+      description: t('features.items.secureSolutions.description', 'home'),
     },
     {
       icon: <Rocket className="w-8 h-8" />,
-      title: 'Innovation Driven',
-      description: 'Cutting-edge technology solutions that keep you ahead of the competition.',
+      title: t('features.items.innovationDriven.title', 'home'),
+      description: t('features.items.innovationDriven.description', 'home'),
     },
     {
       icon: <Users className="w-8 h-8" />,
-      title: '24/7 Support',
-      description: 'Round-the-clock technical support to ensure your systems run smoothly.',
+      title: t('features.items.support.title', 'home'),
+      description: t('features.items.support.description', 'home'),
     },
   ];
 
   const services = [
     {
       icon: <Code className="w-12 h-12" />,
-      title: 'Custom Software Development',
-      shortDesc: 'Tailored software solutions built to your exact specifications.',
-      description: 'We create bespoke software applications that perfectly align with your business processes and objectives.',
+      title: t('services.0.title', 'services'),
+      shortDesc: t('services.0.shortDesc', 'services'),
+      description: t('services.0.description', 'services'),
       features: [
-        'Full-stack web development',
-        'Desktop application development',
-        'Custom web applications',
-        'Legacy system modernization',
-        'Agile development methodology',
-        'Quality assurance and testing'
+        t('services.0.features.0', 'services'),
+        t('services.0.features.1', 'services'),
+        t('services.0.features.2', 'services'),
+        t('services.0.features.3', 'services'),
+        t('services.0.features.4', 'services'),
+        t('services.0.features.5', 'services')
       ],
       popular: true,
     },
     {
       icon: <Cloud className="w-12 h-12" />,
-      title: 'Cloud Solutions & Migration',
-      shortDesc: 'Seamless cloud migration and infrastructure management.',
-      description: 'Transform your IT infrastructure with our comprehensive cloud services.',
+      title: t('services.1.title', 'services'),
+      shortDesc: t('services.1.shortDesc', 'services'),
+      description: t('services.1.description', 'services'),
       features: [
-        'Cloud migration strategy',
-        'AWS, Azure, Google Cloud expertise',
-        'Infrastructure as Code',
-        'Disaster recovery planning',
-        'Cost optimization',
-        '24/7 monitoring and support'
+        t('services.1.features.0', 'services'),
+        t('services.1.features.1', 'services'),
+        t('services.1.features.2', 'services'),
+        t('services.1.features.3', 'services'),
+        t('services.1.features.4', 'services'),
+        t('services.1.features.5', 'services')
       ],
       popular: false,
     },
     {
       icon: <CloudCog className="w-12 h-12" />,
-      title: 'API Development and Integration',
-      shortDesc: 'Robust API solutions for seamless system connectivity.',
-      description: 'Connect your systems and applications with our comprehensive API development and integration services.',
+      title: t('services.2.title', 'services'),
+      shortDesc: t('services.2.shortDesc', 'services'),
+      description: t('services.2.description', 'services'),
       features: [
-        'RESTful API development',
-        'Third-party API integration',
-        'API documentation and testing',
-        'Microservices architecture',
-        'API security and authentication',
-        'Real-time data synchronization'
+        t('services.2.features.0', 'services'),
+        t('services.2.features.1', 'services'),
+        t('services.2.features.2', 'services'),
+        t('services.2.features.3', 'services'),
+        t('services.2.features.4', 'services'),
+        t('services.2.features.5', 'services')
       ],
       popular: false,
     },
     {
       icon: <Database className="w-12 h-12" />,
-      title: 'Data Analytics & BI',
-      shortDesc: 'Turn your data into actionable business insights.',
-      description: 'Unlock the power of your data with our analytics and business intelligence solutions.',
+      title: t('services.3.title', 'services'),
+      shortDesc: t('services.3.shortDesc', 'services'),
+      description: t('services.3.description', 'services'),
       features: [
-        'Data warehouse design',
-        'ETL processes and automation',
-        'Interactive dashboards',
-        'Predictive analytics',
-        'Real-time reporting',
-        'Machine learning integration'
+        t('services.3.features.0', 'services'),
+        t('services.3.features.1', 'services'),
+        t('services.3.features.2', 'services'),
+        t('services.3.features.3', 'services'),
+        t('services.3.features.4', 'services'),
+        t('services.3.features.5', 'services')
       ],
       popular: false,
     },
     {
       icon: <Smartphone className="w-12 h-12" />,
-      title: 'Mobile App Development',
-      shortDesc: 'Native and cross-platform mobile applications.',
-      description: 'Reach your customers wherever they are with our mobile app development services.',
+      title: t('services.4.title', 'services'),
+      shortDesc: t('services.4.shortDesc', 'services'),
+      description: t('services.4.description', 'services'),
       features: [
-        'Native iOS and Android development',
-        'Cross-platform solutions',
-        'UI/UX design',
-        'App store optimization',
-        'Push notifications',
-        'Analytics integration'
+        t('services.4.features.0', 'services'),
+        t('services.4.features.1', 'services'),
+        t('services.4.features.2', 'services'),
+        t('services.4.features.3', 'services'),
+        t('services.4.features.4', 'services'),
+        t('services.4.features.5', 'services')
       ],
       popular: false,
     },
     {
       icon: <Cog className="w-12 h-12" />,
-      title: 'IT Consulting & Support',
-      shortDesc: 'Strategic IT guidance and ongoing technical support.',
-      description: 'Get expert IT guidance to align your technology strategy with business objectives.',
+      title: t('services.5.title', 'services'),
+      shortDesc: t('services.5.shortDesc', 'services'),
+      description: t('services.5.description', 'services'),
       features: [
-        'IT strategy development',
-        'Technology assessment',
-        'Digital transformation planning',
-        'Vendor selection and management',
-        'Help desk support',
-        'System maintenance'
+        t('services.5.features.0', 'services'),
+        t('services.5.features.1', 'services'),
+        t('services.5.features.2', 'services'),
+        t('services.5.features.3', 'services'),
+        t('services.5.features.4', 'services'),
+        t('services.5.features.5', 'services')
       ],
       popular: false,
     },
@@ -180,33 +184,33 @@ const HomePage: React.FC = () => {
   const values = [
     {
       icon: <Lightbulb className="w-8 h-8" />,
-      title: 'Innovation',
-      description: 'We constantly push boundaries and embrace new technologies to deliver cutting-edge solutions.',
+      title: t('values.items.innovation.title', 'about'),
+      description: t('values.items.innovation.description', 'about'),
     },
     {
       icon: <Users className="w-8 h-8" />,
-      title: 'Collaboration',
-      description: 'We work closely with our clients as partners, ensuring their success is our success.',
+      title: t('values.items.collaboration.title', 'about'),
+      description: t('values.items.collaboration.description', 'about'),
     },
     {
       icon: <Award className="w-8 h-8" />,
-      title: 'Excellence',
-      description: 'We maintain the highest standards in everything we do, from code quality to customer service.',
+      title: t('values.items.excellence.title', 'about'),
+      description: t('values.items.excellence.description', 'about'),
     },
     {
       icon: <Heart className="w-8 h-8" />,
-      title: 'Integrity',
-      description: 'We build trust through transparency, honesty, and ethical business practices.',
+      title: t('values.items.integrity.title', 'about'),
+      description: t('values.items.integrity.description', 'about'),
     },
     {
       icon: <Target className="w-8 h-8" />,
-      title: 'Results-Driven',
-      description: 'We focus on delivering measurable outcomes that drive real business value.',
+      title: t('values.items.resultsDriven.title', 'about'),
+      description: t('values.items.resultsDriven.description', 'about'),
     },
     {
       icon: <Globe className="w-8 h-8" />,
-      title: 'Global Perspective',
-      description: 'We bring international best practices and diverse perspectives to every project.',
+      title: t('values.items.globalPerspective.title', 'about'),
+      description: t('values.items.globalPerspective.description', 'about'),
     },
   ];
 
@@ -360,13 +364,13 @@ const HomePage: React.FC = () => {
         <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-[#FF991C] bg-clip-text text-transparent">
-              Transform Your Business
+              {t('hero.title', 'home')}
             </h1>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-semibold mb-8 text-gray-200">
-              with INNO<span className="text-[#FF991C]">TECH</span> Solutions
+              {t('hero.subtitle', 'home')}
             </h2>
             <p className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-              We deliver innovative technology services that empower businesses to thrive in the digital age.
+              {t('hero.description', 'home')}
             </p>
           </div>
         </section>
@@ -388,14 +392,13 @@ const HomePage: React.FC = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-[#FF991C] bg-clip-text text-transparent">
-              Transform Your Business
+              {t('hero.title', 'home')}
             </h1>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-semibold mb-8 text-gray-200">
-              with INNO<span className="text-[#FF991C]">TECH</span> Solutions
+              {t('hero.subtitle', 'home')}
             </h2>
             <p className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-              We deliver innovative technology services that empower businesses to thrive in the digital age.
-              From custom software development to IT consulting, we're your partner in success.
+              {t('hero.description', 'home')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -403,14 +406,14 @@ const HomePage: React.FC = () => {
                 onClick={() => scrollToElement('services')}
                 className="group bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/25 flex items-center space-x-2 pulse-animation"
               >
-                <span>Get Started</span>
+                <span>{t('buttons.getStarted', 'common')}</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
               <button
                 onClick={() => scrollToElement('about')}
                 className="group border-2 border-gray-600 hover:border-white text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:bg-white hover:text-gray-900"
               >
-                Learn More
+                {t('buttons.learnMore', 'common')}
               </button>
             </div>
           </div>
@@ -446,10 +449,10 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl lg:text-5xl font-bold mb-6">
-              Why Choose INNO<span className="text-[#FF991C]">TECH</span>
+              {t('features.title', 'home')}
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              We combine cutting-edge technology with deep industry expertise to deliver solutions that drive real results.
+              {t('features.description', 'home')}
             </p>
           </div>
 
@@ -477,35 +480,20 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-on-scroll">
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-[#FF991C] bg-clip-text text-transparent">
-              About INNOTECH Service
+              {t('title', 'about')}
             </h1>
             <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
-              We are a team of passionate technology professionals dedicated to transforming businesses
-              through innovative digital solutions and exceptional service delivery.
+              {t('description', 'about')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="animate-slide-left animate-on-scroll">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-6">Our Story</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6">{t('story.title', 'about')}</h2>
               <div className="space-y-6 text-gray-300 leading-relaxed">
-                <p>
-                  Founded in 2015, INNOTECH Service emerged from a simple yet powerful vision: to bridge
-                  the gap between cutting-edge technology and practical business solutions. Our founders,
-                  coming from diverse backgrounds in software development, business consulting, and digital
-                  transformation, recognized the need for a service provider that truly understands both
-                  technology and business.
-                </p>
-                <p>
-                  Over the years, we've grown from a small startup to a trusted technology partner for
-                  businesses across various industries. Our journey has been marked by continuous learning,
-                  adaptation, and an unwavering commitment to our clients' success.
-                </p>
-                <p>
-                  Today, we're proud to have helped over 500 businesses transform their operations,
-                  improve their efficiency, and achieve their digital goals. Our success is measured
-                  not just in projects delivered, but in the lasting relationships we've built with our clients.
-                </p>
+                {Array.from({ length: 3 }).map((_, index) => (
+                  <p key={index}>{t(`story.paragraphs.${index}`, 'about')}</p>
+                ))}
               </div>
             </div>
             <div className="relative animate-slide-right animate-on-scroll">
@@ -513,19 +501,19 @@ const HomePage: React.FC = () => {
                 <div className="grid grid-cols-2 gap-6 stagger-animation">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-[#FF991C] mb-2">2015</div>
-                    <div className="text-sm text-gray-400">Company Founded</div>
+                    <div className="text-sm text-gray-400">{t('stats.founded', 'about')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-[#FF991C] mb-2">500+</div>
-                    <div className="text-sm text-gray-400">Clients Served</div>
+                    <div className="text-sm text-gray-400">{t('stats.clients', 'about')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-[#FF991C] mb-2">50+</div>
-                    <div className="text-sm text-gray-400">Team Members</div>
+                    <div className="text-sm text-gray-400">{t('stats.team', 'about')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-[#FF991C] mb-2">15+</div>
-                    <div className="text-sm text-gray-400">Countries Reached</div>
+                    <div className="text-sm text-gray-400">{t('stats.countries', 'about')}</div>
                   </div>
                 </div>
               </div>
@@ -535,10 +523,9 @@ const HomePage: React.FC = () => {
           {/* Technical Expertise Section */}
           <div className="mb-20 animate-on-scroll">
             <div className="text-center mb-16 animate-fade-in">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-6">Our Technical Expertise</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6">{t('expertise.title', 'about')}</h2>
               <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                We leverage cutting-edge technologies and industry best practices to deliver robust,
-                scalable solutions that drive business success.
+                {t('expertise.description', 'about')}
               </p>
             </div>
 
@@ -549,7 +536,7 @@ const HomePage: React.FC = () => {
                   <div className="w-12 h-12 bg-gradient-to-br from-[#FF991C] to-orange-600 rounded-lg flex items-center justify-center mr-4">
                     <Code className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Frontend Development</h3>
+                  <h3 className="text-2xl font-bold text-white">{t('expertise.sections.frontend', 'about')}</h3>
                 </div>
                 <p className="text-gray-400 mb-6">
                   Creating engaging, responsive user interfaces with modern frameworks and technologies.
@@ -609,7 +596,7 @@ const HomePage: React.FC = () => {
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
                     <Database className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Backend Development</h3>
+                  <h3 className="text-2xl font-bold text-white">{t('expertise.sections.backend', 'about')}</h3>
                 </div>
                 <p className="text-gray-400 mb-6">
                   Building robust server-side solutions with scalable architecture and cloud integration.
@@ -670,7 +657,7 @@ const HomePage: React.FC = () => {
                   <div className="w-12 h-12 bg-gradient-to-br from-gray-400 to-gray-500 rounded-lg flex items-center justify-center mr-4">
                     <Smartphone className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Android/iOS Development</h3>
+                  <h3 className="text-2xl font-bold text-white">{t('expertise.sections.mobile', 'about')}</h3>
                 </div>
                 <p className="text-gray-400 mb-6">
                   Native and cross-platform applications with optimal performance and user experience.
@@ -723,7 +710,7 @@ const HomePage: React.FC = () => {
                   <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mr-4">
                     <img src="/images/devops.png" className="w-8 h-8 object-contain" alt="Android" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">DevOps & Infrastructure</h3>
+                  <h3 className="text-2xl font-bold text-white">{t('expertise.sections.devops', 'about')}</h3>
                 </div>
                 <p className="text-gray-400 mb-6">
                   Build, ship, and scale reliably with containerization, orchestration, and cloud infrastructure using Docker, Kubernetes, and Azure.
@@ -772,10 +759,9 @@ const HomePage: React.FC = () => {
 
           {/* Values Section */}
           <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">Our Core Values</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6">{t('values.title', 'about')}</h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              These principles guide everything we do and shape how we interact with our clients,
-              partners, and each other.
+              {t('values.description', 'about')}
             </p>
           </div>
 
@@ -798,10 +784,9 @@ const HomePage: React.FC = () => {
 
           {/* Team Section */}
           <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">Meet Our Team</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6">{t('team.title', 'about')}</h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Our experienced team brings together decades of expertise in technology,
-              business strategy, and client service.
+              {t('team.description', 'about')}
             </p>
           </div>
 
@@ -835,29 +820,25 @@ const HomePage: React.FC = () => {
             <div className="flex items-center justify-center mb-8">
               <Eye className="w-16 h-16 text-[#FF991C] mr-4 float-animation" />
               <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-white to-[#FF991C] bg-clip-text text-transparent">
-                Our Vision
+                {t('title', 'vision')}
               </h1>
             </div>
             <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-12">
-              Shaping the future of technology services by creating innovative solutions that transform
-              businesses and empower communities worldwide.
+              {t('description', 'vision')}
             </p>
             <div className="text-lg text-gray-300 max-w-3xl mx-auto">
-              At INNOTECH Service, we envision a world where technology seamlessly integrates with business
-              operations, enabling unprecedented growth, efficiency, and innovation across all industries.
+              {t('subDescription', 'vision')}
             </div>
           </div>
 
           <div className="text-center mb-16 animate-fade-in animate-on-scroll">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-8">Our Mission</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-8">{t('mission.title', 'vision')}</h2>
             <div className="max-w-4xl mx-auto">
               <blockquote className="text-2xl lg:text-3xl text-gray-300 italic leading-relaxed mb-8">
-                "To empower businesses with innovative technology solutions that drive growth,
-                improve efficiency, and create lasting competitive advantages in an ever-evolving digital landscape."
+                "{t('mission.quote', 'vision')}"
               </blockquote>
               <p className="text-lg text-gray-400">
-                We believe that technology should be an enabler, not a barrier. Our mission is to make
-                advanced technology accessible, understandable, and profitable for businesses of all sizes.
+                {t('mission.description', 'vision')}
               </p>
             </div>
           </div>
@@ -865,10 +846,9 @@ const HomePage: React.FC = () => {
           {/* Development Services Section */}
           <div className="mb-20 animate-on-scroll">
             <div className="text-center mb-16 animate-fade-in">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-6">Our Development Approach</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6">{t('approach.title', 'vision')}</h2>
               <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                We specialize in delivering comprehensive development services that combine cutting-edge technology
-                with exceptional user experience and rapid implementation.
+                {t('approach.description', 'vision')}
               </p>
             </div>
 
@@ -879,29 +859,18 @@ const HomePage: React.FC = () => {
                   <div className="w-12 h-12 bg-gradient-to-br from-[#FF991C] to-orange-600 rounded-lg flex items-center justify-center mr-4">
                     <Users className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Outsourced Development Service</h3>
+                  <h3 className="text-2xl font-bold text-white">{t('approach.services.outsourced.title', 'vision')}</h3>
                 </div>
                 <p className="text-gray-400 mb-6 leading-relaxed">
-                  Involve hiring external teams to manage software development, enabling businesses to access
-                  specialized expertise and reduce costs while focusing on core operations.
+                  {t('approach.services.outsourced.description', 'vision')}
                 </p>
                 <div className="space-y-3">
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Access to specialized expertise</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Cost-effective development solutions</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Focus on core business operations</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Scalable team augmentation</span>
-                  </div>
+                  {Array.from({ length: 4 }).map((_, index) => (
+                    <div key={index} className="flex items-center text-sm text-gray-300">
+                      <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                      <span>{t(`approach.services.outsourced.features.${index}`, 'vision')}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -911,30 +880,18 @@ const HomePage: React.FC = () => {
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
                     <Globe className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Web App Development</h3>
+                  <h3 className="text-2xl font-bold text-white">{t('approach.services.webApp.title', 'vision')}</h3>
                 </div>
                 <p className="text-gray-400 mb-6 leading-relaxed">
-                  Creating interactive applications accessible through web browsers. This approach combines
-                  user-friendly design with robust backend systems, enabling businesses to engage customers
-                  and adapt quickly to market needs.
+                  {t('approach.services.webApp.description', 'vision')}
                 </p>
                 <div className="space-y-3">
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Cross-platform compatibility</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Responsive design implementation</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Robust backend integration</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Real-time customer engagement</span>
-                  </div>
+                  {Array.from({ length: 4 }).map((_, index) => (
+                    <div key={index} className="flex items-center text-sm text-gray-300">
+                      <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                      <span>{t(`approach.services.webApp.features.${index}`, 'vision')}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -944,29 +901,18 @@ const HomePage: React.FC = () => {
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
                     <Smartphone className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Mobile App UX/UI Development</h3>
+                  <h3 className="text-2xl font-bold text-white">{t('approach.services.mobileApp.title', 'vision')}</h3>
                 </div>
                 <p className="text-gray-400 mb-6 leading-relaxed">
-                  The development UX/UI designing user experiences (UX) and user interfaces (UI) for mobile
-                  applications, ensuring they are intuitive, visually appealing, and engaging for users.
+                  {t('approach.services.mobileApp.description', 'vision')}
                 </p>
                 <div className="space-y-3">
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Intuitive user experience design</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Visually appealing interfaces</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>User engagement optimization</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Platform-specific design guidelines</span>
-                  </div>
+                  {Array.from({ length: 4 }).map((_, index) => (
+                    <div key={index} className="flex items-center text-sm text-gray-300">
+                      <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                      <span>{t(`approach.services.mobileApp.features.${index}`, 'vision')}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -976,30 +922,18 @@ const HomePage: React.FC = () => {
                   <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mr-4">
                     <Zap className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Quickly Implemented</h3>
+                  <h3 className="text-2xl font-bold text-white">{t('approach.services.quickImplementation.title', 'vision')}</h3>
                 </div>
                 <p className="text-gray-400 mb-6 leading-relaxed">
-                  Customers benefit from quickly implementing projects by gaining faster time-to-market,
-                  enhanced flexibility, cost efficiency, improved satisfaction, and reduced risk, leading
-                  to a more responsive and tailored solution.
+                  {t('approach.services.quickImplementation.description', 'vision')}
                 </p>
                 <div className="space-y-3">
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Faster time-to-market delivery</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Enhanced project flexibility</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Cost-efficient implementation</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Reduced development risks</span>
-                  </div>
+                  {Array.from({ length: 4 }).map((_, index) => (
+                    <div key={index} className="flex items-center text-sm text-gray-300">
+                      <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                      <span>{t(`approach.services.quickImplementation.features.${index}`, 'vision')}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -1010,25 +944,23 @@ const HomePage: React.FC = () => {
             <div className="max-w-4xl mx-auto bg-gradient-to-br from-[#FF991C]/10 to-purple-500/10 p-8 lg:p-12 rounded-2xl border border-gray-700 hover:border-[#FF991C]/50 transition-all duration-300 glow-on-hover">
               <div className="flex items-center justify-center mb-6">
                 <Target className="w-12 h-12 text-[#FF991C] mr-4" />
-                <h2 className="text-3xl lg:text-4xl font-bold text-white">Our Commitment</h2>
+                <h2 className="text-3xl lg:text-4xl font-bold text-white">{t('commitment.title', 'vision')}</h2>
               </div>
               <p className="text-xl text-gray-300 leading-relaxed mb-6">
-                We are dedicated to transforming your business vision into reality through innovative technology solutions.
-                Our comprehensive approach ensures that every project we undertake delivers exceptional value,
-                outstanding user experiences, and measurable business results.
+                {t('commitment.description', 'vision')}
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-[#FF991C] mb-2">100%</div>
-                  <div className="text-sm text-gray-400">Client Satisfaction Focus</div>
+                  <div className="text-sm text-gray-400">{t('commitment.stats.satisfaction', 'vision')}</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-[#FF991C] mb-2">24/7</div>
-                  <div className="text-sm text-gray-400">Development Support</div>
+                  <div className="text-sm text-gray-400">{t('commitment.stats.support', 'vision')}</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-[#FF991C] mb-2">∞</div>
-                  <div className="text-sm text-gray-400">Innovation Potential</div>
+                  <div className="text-sm text-gray-400">{t('commitment.stats.innovation', 'vision')}</div>
                 </div>
               </div>
             </div>
@@ -1041,24 +973,23 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-on-scroll">
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-[#FF991C] bg-clip-text text-transparent">
-              Our Services
+              {t('title', 'services')}
             </h1>
             <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-12">
-              Comprehensive technology solutions designed to accelerate your business growth and
-              digital transformation journey.
+              {t('description', 'services')}
             </p>
             <div className="flex justify-center space-x-8 text-sm text-gray-400">
               <div className="flex items-center">
                 <Check className="w-5 h-5 text-green-500 mr-2" />
-                <span>Expert Team</span>
+                <span>{t('highlights.expertTeam', 'services')}</span>
               </div>
               <div className="flex items-center">
                 <Check className="w-5 h-5 text-green-500 mr-2" />
-                <span>Proven Results</span>
+                <span>{t('highlights.provenResults', 'services')}</span>
               </div>
               <div className="flex items-center">
                 <Check className="w-5 h-5 text-green-500 mr-2" />
-                <span>24/7 Support</span>
+                <span>{t('highlights.support', 'services')}</span>
               </div>
             </div>
           </div>
@@ -1076,7 +1007,7 @@ const HomePage: React.FC = () => {
                 {service.popular && (
                   <div className="absolute -top-3 -right-3 bg-gradient-to-r from-[#FF991C] to-orange-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center pulse-animation">
                     <Star className="w-3 h-3 mr-1" />
-                    Popular
+                    {t('popular', 'services')}
                   </div>
                 )}
 
@@ -1118,13 +1049,13 @@ const HomePage: React.FC = () => {
                 onClick={() => scrollToElement('contact')}
                 className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 glow-on-hover"
               >
-                <span>Get Started</span>
+                <span>{t('getStartedButton', 'services')}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
 
             <div className="dark-surface p-8 rounded-2xl animate-slide-right glow-on-hover">
-              <h3 className="text-xl font-bold mb-6 text-white">What's Included:</h3>
+              <h3 className="text-xl font-bold mb-6 text-white">{t('whatsIncluded', 'services')}:</h3>
               <div className="space-y-3">
                 {services[activeService].features.map((feature, index) => (
                   <div key={index} className="flex items-center">
@@ -1143,19 +1074,18 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-on-scroll">
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-[#FF991C] bg-clip-text text-transparent">
-              Get In Touch
+              {t('title', 'contact')}
             </h1>
             <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-12">
-              Ready to transform your business with innovative technology solutions?
-              Let's start a conversation about your project.
+              {t('description', 'contact')}
             </p>
           </div>
 
           {/* Map Section */}
           <div className="mb-16 animate-on-scroll">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-4 text-white">Our Location</h2>
-              <p className="text-gray-400">Visit us at our office in Vientiane, Laos</p>
+              <h2 className="text-3xl font-bold mb-4 text-white">{t('location.title', 'contact')}</h2>
+              <p className="text-gray-400">{t('location.description', 'contact')}</p>
             </div>
             <div className="dark-surface p-4 rounded-2xl overflow-hidden hover:border-[#FF991C]/50 transition-all duration-300 glow-on-hover">
               <iframe
@@ -1172,7 +1102,7 @@ const HomePage: React.FC = () => {
               <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="inline-flex items-center space-x-2 text-gray-400">
                   <MapPin className="w-4 h-4 text-[#FF991C]" />
-                  <span className="text-sm">17°59'29.8"N 102°37'22.3"E</span>
+                  <span className="text-sm">{t('location.coordinates', 'contact')}</span>
                 </div>
                 <a
                   href="https://www.google.com/maps/place/17%C2%B059'29.8%22N+102%C2%B037'22.3%22E/@17.9916111,102.6206124,17z/"
@@ -1180,23 +1110,24 @@ const HomePage: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 text-[#FF991C] hover:text-orange-400 transition-colors duration-200 text-sm font-medium"
                 >
-                  <span>Open in Google Maps</span>
+                  <span>{t('location.openInMaps', 'contact')}</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
             </div>
           </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 animate-on-scroll">
             {/* Contact Form */}
             <div className="animate-slide-left">
-              <h2 className="text-3xl font-bold mb-8 text-white">Send Us a Message</h2>
+              <h2 className="text-3xl font-bold mb-8 text-white">{t('form.title', 'contact')}</h2>
 
               {isSubmitted ? (
                 <div className="bg-green-500/20 border border-green-500/50 rounded-2xl p-8 text-center animate-scale">
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">{t('form.success.title', 'contact')}</h3>
                   <p className="text-gray-300">
-                    Thank you for reaching out. We'll get back to you within 24 hours.
+                    {t('form.success.description', 'contact')}
                   </p>
                 </div>
               ) : (
@@ -1204,7 +1135,7 @@ const HomePage: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                        Full Name *
+                        {t('form.fullName', 'common')} *
                       </label>
                       <input
                         type="text"
@@ -1214,12 +1145,12 @@ const HomePage: React.FC = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
-                        placeholder="Your full name"
+                        placeholder={t('form.placeholders.fullName', 'common')}
                       />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                        Email Address *
+                        {t('form.email', 'common')} *
                       </label>
                       <input
                         type="email"
@@ -1229,7 +1160,7 @@ const HomePage: React.FC = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
-                        placeholder="your.email@company.com"
+                        placeholder={t('form.placeholders.email', 'common')}
                       />
                     </div>
                   </div>
@@ -1237,7 +1168,7 @@ const HomePage: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
-                        Company Name
+                        {t('form.company', 'common')}
                       </label>
                       <input
                         type="text"
@@ -1246,12 +1177,12 @@ const HomePage: React.FC = () => {
                         value={formData.company}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
-                        placeholder="Your company name"
+                        placeholder={t('form.placeholders.company', 'common')}
                       />
                     </div>
                     <div>
                       <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-2">
-                        Service Interested In
+                        {t('form.serviceInterest', 'common')}
                       </label>
                       <select
                         id="service"
@@ -1260,7 +1191,7 @@ const HomePage: React.FC = () => {
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white transition-all duration-200"
                       >
-                        <option value="">Select a service</option>
+                        <option value="">{t('form.placeholders.service', 'common')}</option>
                         {services.map((service, index) => (
                           <option key={index} value={service.title}>
                             {service.title}
@@ -1272,7 +1203,7 @@ const HomePage: React.FC = () => {
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                      Message *
+                      {t('form.message', 'common')} *
                     </label>
                     <textarea
                       id="message"
@@ -1282,7 +1213,7 @@ const HomePage: React.FC = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white placeholder-gray-400 transition-all duration-200 resize-none"
-                      placeholder="Tell us about your project requirements, timeline, and any specific questions you have..."
+                      placeholder={t('form.placeholders.message', 'common')}
                     />
                   </div>
 
@@ -1290,7 +1221,7 @@ const HomePage: React.FC = () => {
                     type="submit"
                     className="group w-full bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/25 flex items-center justify-center space-x-2 glow-on-hover"
                   >
-                    <span>Send Message</span>
+                    <span>{t('buttons.sendMessage', 'common')}</span>
                     <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
                 </form>
@@ -1299,19 +1230,19 @@ const HomePage: React.FC = () => {
 
             {/* Contact Info */}
             <div className="animate-slide-right">
-              <h2 className="text-3xl font-bold mb-8 text-white">Contact Information</h2>
+              <h2 className="text-3xl font-bold mb-8 text-white">{t('contactInfo.title', 'contact')}</h2>
 
               <div className="space-y-6 stagger-animation">
                 <div className="dark-surface p-6 rounded-2xl hover:border-[#FF991C]/50 transition-all duration-300 glow-on-hover">
                   <div className="flex items-center mb-4">
                     <Mail className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
-                      <h3 className="text-xl font-semibold text-white">Email Us</h3>
-                      <p className="text-gray-400">innotech-service@outlook.com</p>
+                      <h3 className="text-xl font-semibold text-white">{t('contactInfo.email.title', 'contact')}</h3>
+                      <p className="text-gray-400">{t('contactInfo.email.value', 'contact')}</p>
                     </div>
                   </div>
                   <p className="text-gray-400 text-sm">
-                    Send us an email anytime, we typically respond within 24 hours.
+                    {t('contactInfo.email.description', 'contact')}
                   </p>
                 </div>
 
@@ -1319,12 +1250,12 @@ const HomePage: React.FC = () => {
                   <div className="flex items-center mb-4">
                     <Phone className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
-                      <h3 className="text-xl font-semibold text-white">Call Us</h3>
-                      <p className="text-gray-400">+856 20 22666395 or +856 20 22115245</p>
+                      <h3 className="text-xl font-semibold text-white">{t('contactInfo.phone.title', 'contact')}</h3>
+                      <p className="text-gray-400">{t('contactInfo.phone.value', 'contact')}</p>
                     </div>
                   </div>
                   <p className="text-gray-400 text-sm">
-                    Speak directly with our team during business hours.
+                    {t('contactInfo.phone.description', 'contact')}
                   </p>
                 </div>
 
@@ -1332,12 +1263,12 @@ const HomePage: React.FC = () => {
                   <div className="flex items-center mb-4">
                     <MapPin className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
-                      <h3 className="text-xl font-semibold text-white">Visit Us</h3>
-                      <p className="text-gray-400">B.Phonetong-Savang Street, Chanthabuly, Vientiane Capital.</p>
+                      <h3 className="text-xl font-semibold text-white">{t('contactInfo.visit.title', 'contact')}</h3>
+                      <p className="text-gray-400">{t('contactInfo.visit.value', 'contact')}</p>
                     </div>
                   </div>
                   <p className="text-gray-400 text-sm">
-                    Schedule a visit to our modern office space.
+                    {t('contactInfo.visit.description', 'contact')}
                   </p>
                 </div>
 
@@ -1345,12 +1276,12 @@ const HomePage: React.FC = () => {
                   <div className="flex items-center mb-4">
                     <Clock className="w-8 h-8 text-[#FF991C] mr-4" />
                     <div>
-                      <h3 className="text-xl font-semibold text-white">Business Hours</h3>
-                      <p className="text-gray-400">Mon - Fri: 9:00 AM - 5:00 PM</p>
+                      <h3 className="text-xl font-semibold text-white">{t('contactInfo.hours.title', 'contact')}</h3>
+                      <p className="text-gray-400">{t('contactInfo.hours.value', 'contact')}</p>
                     </div>
                   </div>
                   <p className="text-gray-400 text-sm">
-                    24/7 support available for enterprise clients.
+                    {t('contactInfo.hours.description', 'contact')}
                   </p>
                 </div>
               </div>
@@ -1364,16 +1295,16 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-scale">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl lg:text-5xl font-bold mb-6">
-              Ready to Transform Your Business?
+              {t('callToAction.title', 'home')}
             </h2>
             <p className="text-xl text-gray-400 mb-8">
-              Let's discuss how INNOTECH can help you achieve your technology goals and drive growth.
+              {t('callToAction.description', 'home')}
             </p>
             <button
               onClick={() => scrollToElement('contact')}
               className="group inline-flex items-center space-x-2 bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/25 pulse-animation glow-on-hover"
             >
-              <span>Contact Us Today</span>
+              <span>{t('callToAction.button', 'home')}</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </button>
           </div>

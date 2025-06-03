@@ -1,0 +1,40 @@
+{
+  "hero": {
+    "title": "Transform Your Business",
+    "subtitle": "with INNOTECH Solutions",
+    "description": "We deliver innovative technology services that empower businesses to thrive in the digital age. From custom software development to IT consulting, we're your partner in success."
+  },
+  "stats": {
+    "happyClients": "Happy Clients",
+    "projectsCompleted": "Projects Completed",
+    "yearsExperience": "Years Experience",
+    "supportAvailable": "Support Available"
+  },
+  "features": {
+    "title": "Why Choose INNOTECH",
+    "description": "We combine cutting-edge technology with deep industry expertise to deliver solutions that drive real results.",
+    "items": {
+      "fastReliable": {
+        "title": "Fast & Reliable",
+        "description": "Lightning-fast solutions with 99.9% uptime guarantee for your business continuity."
+      },
+      "secureSolutions": {
+        "title": "Secure Solutions",
+        "description": "Enterprise-grade security measures to protect your data and business operations."
+      },
+      "innovationDriven": {
+        "title": "Innovation Driven",
+        "description": "Cutting-edge technology solutions that keep you ahead of the competition."
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Round-the-clock technical support to ensure your systems run smoothly."
+      }
+    }
+  },
+  "callToAction": {
+    "title": "Ready to Transform Your Business?",
+    "description": "Let's discuss how INNOTECH can help you achieve your technology goals and drive growth.",
+    "button": "Contact Us Today"
+  }
+}

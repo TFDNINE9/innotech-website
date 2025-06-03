@@ -1,0 +1,43 @@
+{
+  "title": "Get In Touch",
+  "description": "Ready to transform your business with innovative technology solutions? Let's start a conversation about your project.",
+  
+  "location": {
+    "title": "Our Location",
+    "description": "Visit us at our office in Vientiane, Laos",
+    "coordinates": "17°59'29.8\"N 102°37'22.3\"E",
+    "openInMaps": "Open in Google Maps"
+  },
+  
+  "form": {
+    "title": "Send Us a Message",
+    "success": {
+      "title": "Message Sent!",
+      "description": "Thank you for reaching out. We'll get back to you within 24 hours."
+    }
+  },
+  
+  "contactInfo": {
+    "title": "Contact Information",
+    "email": {
+      "title": "Email Us",
+      "value": "innotech-service@outlook.com",
+      "description": "Send us an email anytime, we typically respond within 24 hours."
+    },
+    "phone": {
+      "title": "Call Us",
+      "value": "+856 20 22666395 or +856 20 22115245",
+      "description": "Speak directly with our team during business hours."
+    },
+    "visit": {
+      "title": "Visit Us",
+      "value": "B.Phonetong-Savang Street, Chanthabuly, Vientiane Capital.",
+      "description": "Schedule a visit to our modern office space."
+    },
+    "hours": {
+      "title": "Business Hours",
+      "value": "Mon - Fri: 9:00 AM - 5:00 PM",
+      "description": "24/7 support available for enterprise clients."
+    }
+  }
+}

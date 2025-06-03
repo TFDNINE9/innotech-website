@@ -1,0 +1,31 @@
+/* src/styles/fonts.css */
+@font-face {
+  font-family: 'Saysettha OT';
+  src: url('/fonts/saysettha_ot.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply Lao font to specific elements when language is set to Lao */
+html[lang="lo"] body {
+  font-family: 'Saysettha OT', 'Inter', system-ui, sans-serif;
+}
+
+/* You can also target specific elements if needed */
+html[lang="lo"] h1,
+html[lang="lo"] h2,
+html[lang="lo"] h3,
+html[lang="lo"] h4,
+html[lang="lo"] h5,
+html[lang="lo"] h6,
+html[lang="lo"] p,
+html[lang="lo"] span,
+html[lang="lo"] button,
+html[lang="lo"] a,
+html[lang="lo"] input,
+html[lang="lo"] textarea,
+html[lang="lo"] select,
+html[lang="lo"] option {
+  font-family: 'Saysettha OT', 'Inter', system-ui, sans-serif;
+}

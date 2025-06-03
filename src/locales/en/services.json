@@ -1,0 +1,92 @@
+{
+  "title": "Our Services",
+  "description": "Comprehensive technology solutions designed to accelerate your business growth and digital transformation journey.",
+  "highlights": {
+    "expertTeam": "Expert Team",
+    "provenResults": "Proven Results",
+    "support": "24/7 Support"
+  },
+  "popular": "Popular",
+  "services": [
+    {
+      "title": "Custom Software Development",
+      "shortDesc": "Tailored software solutions built to your exact specifications.",
+      "description": "We create bespoke software applications that perfectly align with your business processes and objectives.",
+      "features": [
+        "Full-stack web development",
+        "Desktop application development",
+        "Custom web applications",
+        "Legacy system modernization",
+        "Agile development methodology",
+        "Quality assurance and testing"
+      ]
+    },
+    {
+      "title": "Cloud Solutions & Migration",
+      "shortDesc": "Seamless cloud migration and infrastructure management.",
+      "description": "Transform your IT infrastructure with our comprehensive cloud services.",
+      "features": [
+        "Cloud migration strategy",
+        "AWS, Azure, Google Cloud expertise",
+        "Infrastructure as Code",
+        "Disaster recovery planning",
+        "Cost optimization",
+        "24/7 monitoring and support"
+      ]
+    },
+    {
+      "title": "API Development and Integration",
+      "shortDesc": "Robust API solutions for seamless system connectivity.",
+      "description": "Connect your systems and applications with our comprehensive API development and integration services.",
+      "features": [
+        "RESTful API development",
+        "Third-party API integration",
+        "API documentation and testing",
+        "Microservices architecture",
+        "API security and authentication",
+        "Real-time data synchronization"
+      ]
+    },
+    {
+      "title": "Data Analytics & BI",
+      "shortDesc": "Turn your data into actionable business insights.",
+      "description": "Unlock the power of your data with our analytics and business intelligence solutions.",
+      "features": [
+        "Data warehouse design",
+        "ETL processes and automation",
+        "Interactive dashboards",
+        "Predictive analytics",
+        "Real-time reporting",
+        "Machine learning integration"
+      ]
+    },
+    {
+      "title": "Mobile App Development",
+      "shortDesc": "Native and cross-platform mobile applications.",
+      "description": "Reach your customers wherever they are with our mobile app development services.",
+      "features": [
+        "Native iOS and Android development",
+        "Cross-platform solutions",
+        "UI/UX design",
+        "App store optimization",
+        "Push notifications",
+        "Analytics integration"
+      ]
+    },
+    {
+      "title": "IT Consulting & Support",
+      "shortDesc": "Strategic IT guidance and ongoing technical support.",
+      "description": "Get expert IT guidance to align your technology strategy with business objectives.",
+      "features": [
+        "IT strategy development",
+        "Technology assessment",
+        "Digital transformation planning",
+        "Vendor selection and management",
+        "Help desk support",
+        "System maintenance"
+      ]
+    }
+  ],
+  "getStartedButton": "Get Started",
+  "whatsIncluded": "What's Included"
+}

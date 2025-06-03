@@ -1,0 +1,62 @@
+{
+  "title": "About INNOTECH Service",
+  "description": "We are a team of passionate technology professionals dedicated to transforming businesses through innovative digital solutions and exceptional service delivery.",
+  "story": {
+    "title": "Our Story",
+    "paragraphs": [
+      "Founded in 2015, INNOTECH Service emerged from a simple yet powerful vision: to bridge the gap between cutting-edge technology and practical business solutions. Our founders, coming from diverse backgrounds in software development, business consulting, and digital transformation, recognized the need for a service provider that truly understands both technology and business.",
+      "Over the years, we've grown from a small startup to a trusted technology partner for businesses across various industries. Our journey has been marked by continuous learning, adaptation, and an unwavering commitment to our clients' success.",
+      "Today, we're proud to have helped over 500 businesses transform their operations, improve their efficiency, and achieve their digital goals. Our success is measured not just in projects delivered, but in the lasting relationships we've built with our clients."
+    ]
+  },
+  "stats": {
+    "founded": "Company Founded",
+    "clients": "Clients Served",
+    "team": "Team Members",
+    "countries": "Countries Reached"
+  },
+  "expertise": {
+    "title": "Our Technical Expertise",
+    "description": "We leverage cutting-edge technologies and industry best practices to deliver robust, scalable solutions that drive business success.",
+    "sections": {
+      "frontend": "Frontend Development",
+      "backend": "Backend Development",
+      "mobile": "Android/iOS Development",
+      "devops": "DevOps & Infrastructure"
+    }
+  },
+  "values": {
+    "title": "Our Core Values",
+    "description": "These principles guide everything we do and shape how we interact with our clients, partners, and each other.",
+    "items": {
+      "innovation": {
+        "title": "Innovation",
+        "description": "We constantly push boundaries and embrace new technologies to deliver cutting-edge solutions."
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "description": "We work closely with our clients as partners, ensuring their success is our success."
+      },
+      "excellence": {
+        "title": "Excellence",
+        "description": "We maintain the highest standards in everything we do, from code quality to customer service."
+      },
+      "integrity": {
+        "title": "Integrity",
+        "description": "We build trust through transparency, honesty, and ethical business practices."
+      },
+      "resultsDriven": {
+        "title": "Results-Driven",
+        "description": "We focus on delivering measurable outcomes that drive real business value."
+      },
+      "globalPerspective": {
+        "title": "Global Perspective",
+        "description": "We bring international best practices and diverse perspectives to every project."
+      }
+    }
+  },
+  "team": {
+    "title": "Meet Our Team",
+    "description": "Our experienced team brings together decades of expertise in technology, business strategy, and client service."
+  }
+}

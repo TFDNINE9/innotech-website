@@ -4,6 +4,8 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, ChevronRight } from 'lucide-react';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -13,13 +15,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const { t } = useLanguage();
 
   const navigation = [
-    { name: 'Home', href: '/#home', section: 'home' },
-    { name: 'About Us', href: '/#about', section: 'about' },
-    { name: 'Vision', href: '/#vision', section: 'vision' },
-    { name: 'Services', href: '/#services', section: 'services' },
-    { name: 'Contact', href: '/#contact', section: 'contact' },
+    { name: t('nav.home'), href: '/#home', section: 'home' },
+    { name: t('nav.about'), href: '/#about', section: 'about' },
+    { name: t('nav.vision'), href: '/#vision', section: 'vision' },
+    { name: t('nav.services'), href: '/#services', section: 'services' },
+    { name: t('nav.contact'), href: '/#contact', section: 'contact' },
   ];
 
   const isActive = (href: string, section: string) => {
@@ -159,15 +162,21 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   />
                 </Link>
               ))}
+              
+              {/* Language Switcher */}
+              <LanguageSwitcher />
             </div>
 
             {/* Mobile menu button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-md hover:bg-gray-800 transition-colors duration-200"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            <div className="md:hidden flex items-center">
+              <LanguageSwitcher className="mr-2" />
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-2 rounded-md hover:bg-gray-800 transition-colors duration-200"
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -215,12 +224,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 />
               </div>
               <p className="text-gray-400 mb-4 max-w-md">
-                Delivering innovative technology solutions to transform your business and drive growth in the digital age.
+                {t('footer.description', 'common')}
               </p>
             </div>
             
             <div>
-              <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+              <h3 className="text-white font-semibold mb-4">{t('footer.quickLinks', 'common')}</h3>
               <ul className="space-y-2">
                 {navigation.map((item) => (
                   <li key={item.name}>
@@ -237,17 +246,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </div>
             
             <div>
-              <h3 className="text-white font-semibold mb-4">Contact Info</h3>
+              <h3 className="text-white font-semibold mb-4">{t('footer.contactInfo', 'common')}</h3>
               <div className="space-y-2 text-gray-400">
-                <p>Email: innotech-service@outlook.com</p>
-                <p>Phone: +856 20 22666395 or +856 20 22115245 </p>
-                <p>Address: B.Phonetong-Savang Street, Chanthabuly, Vientiane Capital.</p>
+                <p>{t('footer.email', 'common')}: innotech-service@outlook.com</p>
+                <p>{t('footer.phone', 'common')}: +856 20 22666395 or +856 20 22115245 </p>
+                <p>{t('footer.address', 'common')}: B.Phonetong-Savang Street, Chanthabuly, Vientiane Capital.</p>
               </div>
             </div>
           </div>
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 Innotech Service. All rights reserved.</p>
+            <p>&copy; 2025 Innotech Service. {t('footer.allRightsReserved', 'common')}</p>
           </div>
         </div>
       </footer>
