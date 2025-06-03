@@ -861,6 +861,178 @@ const HomePage: React.FC = () => {
               </p>
             </div>
           </div>
+
+          {/* Development Services Section */}
+          <div className="mb-20 animate-on-scroll">
+            <div className="text-center mb-16 animate-fade-in">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6">Our Development Approach</h2>
+              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                We specialize in delivering comprehensive development services that combine cutting-edge technology
+                with exceptional user experience and rapid implementation.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 stagger-animation">
+              {/* Outsourced Development Service */}
+              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50 card-hover">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#FF991C] to-orange-600 rounded-lg flex items-center justify-center mr-4">
+                    <Users className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Outsourced Development Service</h3>
+                </div>
+                <p className="text-gray-400 mb-6 leading-relaxed">
+                  Involve hiring external teams to manage software development, enabling businesses to access
+                  specialized expertise and reduce costs while focusing on core operations.
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Access to specialized expertise</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Cost-effective development solutions</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Focus on core business operations</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Scalable team augmentation</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Web App Development */}
+              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50 card-hover">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                    <Globe className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Web App Development</h3>
+                </div>
+                <p className="text-gray-400 mb-6 leading-relaxed">
+                  Creating interactive applications accessible through web browsers. This approach combines
+                  user-friendly design with robust backend systems, enabling businesses to engage customers
+                  and adapt quickly to market needs.
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Cross-platform compatibility</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Responsive design implementation</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Robust backend integration</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Real-time customer engagement</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mobile App UX/UI Development */}
+              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50 card-hover">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                    <Smartphone className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Mobile App UX/UI Development</h3>
+                </div>
+                <p className="text-gray-400 mb-6 leading-relaxed">
+                  The development UX/UI designing user experiences (UX) and user interfaces (UI) for mobile
+                  applications, ensuring they are intuitive, visually appealing, and engaging for users.
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Intuitive user experience design</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Visually appealing interfaces</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>User engagement optimization</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Platform-specific design guidelines</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quickly Implemented */}
+              <div className="group dark-surface p-8 rounded-2xl hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/10 hover:border-[#FF991C]/50 card-hover">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mr-4">
+                    <Zap className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Quickly Implemented</h3>
+                </div>
+                <p className="text-gray-400 mb-6 leading-relaxed">
+                  Customers benefit from quickly implementing projects by gaining faster time-to-market,
+                  enhanced flexibility, cost efficiency, improved satisfaction, and reduced risk, leading
+                  to a more responsive and tailored solution.
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Faster time-to-market delivery</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Enhanced project flexibility</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Cost-efficient implementation</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                    <span>Reduced development risks</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Our Commitment Section */}
+          <div className="text-center animate-on-scroll">
+            <div className="max-w-4xl mx-auto bg-gradient-to-br from-[#FF991C]/10 to-purple-500/10 p-8 lg:p-12 rounded-2xl border border-gray-700 hover:border-[#FF991C]/50 transition-all duration-300 glow-on-hover">
+              <div className="flex items-center justify-center mb-6">
+                <Target className="w-12 h-12 text-[#FF991C] mr-4" />
+                <h2 className="text-3xl lg:text-4xl font-bold text-white">Our Commitment</h2>
+              </div>
+              <p className="text-xl text-gray-300 leading-relaxed mb-6">
+                We are dedicated to transforming your business vision into reality through innovative technology solutions.
+                Our comprehensive approach ensures that every project we undertake delivers exceptional value,
+                outstanding user experiences, and measurable business results.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-[#FF991C] mb-2">100%</div>
+                  <div className="text-sm text-gray-400">Client Satisfaction Focus</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-[#FF991C] mb-2">24/7</div>
+                  <div className="text-sm text-gray-400">Development Support</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-[#FF991C] mb-2">∞</div>
+                  <div className="text-sm text-gray-400">Innovation Potential</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
