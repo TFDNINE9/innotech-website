@@ -32,6 +32,7 @@ import {
   ChevronUp,
   CloudCog
 } from 'lucide-react';
+import ContactForm from '@/components/ContactForm';
 
 const HomePage: React.FC = () => {
   // Get translation function from language context
@@ -1118,124 +1119,7 @@ const HomePage: React.FC = () => {
             {/* Contact Form */}
             <div className="animate-slide-left">
               <h2 className="text-3xl font-bold mb-8 text-white">{t('form.title', 'contact')}</h2>
-
-              {isSubmitted ? (
-                <div className="bg-green-500/20 border border-green-500/50 rounded-2xl p-8 text-center animate-scale">
-                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-white mb-2">{t('form.success.title', 'contact')}</h3>
-                  <p className="text-gray-300">
-                    {t('form.success.description', 'contact')}
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                        {t('form.fullName', 'common')} *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
-                        placeholder={t('form.placeholders.fullName', 'common')}
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                        {t('form.email', 'common')} *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
-                        placeholder={t('form.placeholders.email', 'common')}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
-                        {t('form.company', 'common')}
-                      </label>
-                      <input
-                        type="text"
-                        id="company"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
-                        placeholder={t('form.placeholders.company', 'common')}
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-2">
-                        {t('form.serviceInterest', 'common')}
-                      </label>
-                      <div className="relative">
-                        <select
-                          id="service"
-                          name="service"
-                          value={formData.service}
-                          onChange={handleInputChange}
-                          className="w-full px-4 pr-12 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white transition-all duration-200 appearance-none"
-                        >
-                          <option value="">{t('form.placeholders.service', 'common')}</option>
-                          {services.map((service, index) => (
-                            <option key={index} value={service.title}>
-                              {service.title}
-                            </option>
-                          ))}
-                        </select>
-                        <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-                          <svg
-                            className="w-4 h-4 text-gray-400"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                          </svg>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                      {t('form.message', 'common')} *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={6}
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#FF991C] focus:border-transparent text-white placeholder-gray-400 transition-all duration-200 resize-none"
-                      placeholder={t('form.placeholders.message', 'common')}
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="group w-full bg-gradient-to-r from-[#FF991C] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FF991C]/25 flex items-center justify-center space-x-2 glow-on-hover"
-                  >
-                    <span>{t('buttons.sendMessage', 'common')}</span>
-                    <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </button>
-                </form>
-              )}
+              <ContactForm services={services} />
             </div>
 
             {/* Contact Info */}
