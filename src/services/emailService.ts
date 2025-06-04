@@ -19,12 +19,12 @@ export const emailService = {
         },
         body: JSON.stringify(emailData),
       });
-      
+
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to send email');
+        throw new Error(errorData.message ?? 'Failed to send email');
       }
-      
+
       return response;
     } catch (error) {
       console.error('Email service error:', error);
@@ -48,12 +48,12 @@ export const emailService = {
     const bodyHtml = emailTemplates.contactFormEmail(formData);
 
     return {
-      subject: `customer enquery - ${formData.service || 'General Inquiry'} - ${formData.name}`,
+      subject: `customer enquery - ${formData.service ?? 'General Inquiry'} - ${formData.name}`,
       body: bodyHtml,
       tos: [
-        { 
-          name: "Innotech Contact", 
-          address: "topfeedan9@gmail.com" 
+        {
+          name: "Innotech Contact",
+          address: "contact@innotech.com.la"
         }
       ],
       from: {

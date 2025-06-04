@@ -422,8 +422,8 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-gray-900/50 animate-on-scroll">
+  
+      {/* <section className="py-20 bg-gray-900/50 animate-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 stagger-animation">
             {stats.map((stat, index) => (
@@ -440,7 +440,7 @@ const HomePage: React.FC = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Features Section */}
       <section className="section-padding animate-on-scroll">
@@ -485,7 +485,7 @@ const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+          {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="animate-slide-left animate-on-scroll">
               <h2 className="text-3xl lg:text-4xl font-bold mb-6">{t('story.title', 'about')}</h2>
               <div className="space-y-6 text-gray-300 leading-relaxed">
@@ -516,7 +516,7 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Technical Expertise Section */}
           <div className="mb-20 animate-on-scroll">
@@ -780,7 +780,7 @@ const HomePage: React.FC = () => {
             ))}
           </div>
 
-          {/* Team Section */}
+          {/* Team Section
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">{t('team.title', 'about')}</h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
@@ -807,7 +807,7 @@ const HomePage: React.FC = () => {
                 </p>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -1213,6 +1213,7 @@ const HomePage: React.FC = () => {
       >
         <ChevronUp className="w-6 h-6 text-white" />
       </button>
+
     </Layout>
   );
 };
